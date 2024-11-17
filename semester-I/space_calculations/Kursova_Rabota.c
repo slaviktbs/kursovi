@@ -29,6 +29,6 @@ int main(void)
     printf ("Click from 1 to 2 to choose it \n");
     scanf("%d", &second_choose);
     printf ("You have chosen: %d", second_choose);
-
+ghghghghhg
 
 }
