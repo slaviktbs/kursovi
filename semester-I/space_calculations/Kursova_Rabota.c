@@ -13,21 +13,16 @@
 
 int main(void)
 {
-    int first_choose second_choose;
-    float mass, S_all, S_atmos, S_space, S_landing;
+    int first_choose;
+    float mass;
+    float S_all, S_atmos, S_space, S_landing;
     float t_all, t_atmos, t_space, t_landing;
     float fuel_all, fuel_atmos, fuel_space, fuel_landing;
-    char Moon, Mars;
+
     printf ("Choose the destination: Moon (1) or Mars (2) \n");
     printf ("Click 1 or 2 to choose it \n");
     scanf ("%d", &first_choose);
     printf ("You have chosen: %d", first_choose);
-
-
-/*  тук трябва да се добави списъка от файла за избор
-    след което да се взме от интернет данните за времето в дадения ден и час и по-нататък да се съобразява с тях,
-    като съпротивление на въздух и тн 
-*/ 
 
 
     printf ("Enter the mass of the product in kg: \n");
@@ -36,11 +31,10 @@ int main(void)
 
 
 /*
-    Започва да се пресмята време за пътуване.
-
-
-    От кинематика (без отчитане на съпротивление на въздуха) знаем, че за да се изкачи на височина h
+    Започва да се пресмята време за пътуване, като се отчитат климатичните условия
+    в даден момент на 
 */
+
     S_all = S_atmos + S_spac + S_landing;
     t_all = t_atmos + t_space + t_landing;
     fuel_all = fuel_atmos + fuel_space + fuel_landing;
@@ -50,6 +44,11 @@ int main(void)
     if (first_choose == 1)  // Потребителя е избрал за дестинация Луната
     {
         S_space = 
+/*
+    От кинематика (без отчитане на съпротивление на въздуха) знаем,
+    че 
+*/
+
     }
 
     else if (first_choose == 2)  // Потребителя е избрал за дестинация Марс
