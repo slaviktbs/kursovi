@@ -24,15 +24,10 @@ int main(void)
     printf ("You have chosen: %d", first_choose);
 
 
-//    printf ("Choose the cosmodrome: \n");
 /*  тук трябва да се добави списъка от файла за избор
     след което да се взме от интернет данните за времето в дадения ден и час и по-нататък да се съобразява с тях,
     като съпротивление на въздух и тн 
 */ 
-/*  printf ("Click from 1 to 2 to choose it \n");
-    scanf("%d", &second_choose);
-    printf ("You have chosen: %d", second_choose);
-*/
 
 
     printf ("Enter the mass of the product in kg: \n");
@@ -49,11 +44,16 @@ int main(void)
     S_all = S_atmos + S_spac + S_landing;
     t_all = t_atmos + t_space + t_landing;
     fuel_all = fuel_atmos + fuel_space + fuel_landing;
-    if (first_choose == 1)
+    S_atmos = 50000;
+    S_landing = ;
+
+    if (first_choose == 1)  // Потребителя е избрал за дестинация Луната
     {
-        S_atmos = 
         S_space = 
-        S_landing =
     }
-    
+
+    else if (first_choose == 2)  // Потребителя е избрал за дестинация Марс
+    {
+        S_space =
+    }    
 }
