@@ -1,6 +1,6 @@
 /*
     Програмата пресмята расхода на горивото, време за пътуване от Земя до Луна/Марс
-    от космодром "НАЗВАНИЕТО",
+    от космодром "НАЗВАНИЕТО", със ракета Starship на кампанията SpaceX
     като исползва дани въведени от потребител: 
         дистинацията (destination)
         масата на товара (mass)
@@ -58,16 +58,14 @@ int main(void)
         t_atmos = (2*S_atmos)/V_1;
 
         fuel_atmos=((M_Starship+mass)*g*R_Eath-0.5*(M_Starship+mass)*(V_1^2)-(M_Starship+mass)*G*M_Eath-0.5*Ro*k*S*(V_1^2)*S_atmos)/Lambda;
-/*
-    От кинематика (без отчитане на съпротивление на въздуха) знаем,
-    че 
-*/
 
     }
 
     else if (first_choose == 2)  // Потребителя е избрал за дестинация Марс
     {
-       
+       t_atmos = (2*S_atmos)/V_1;
+
+       fuel_atmos=((M_Starship+mass)*g*R_Eath-0.5*(M_Starship+mass)*(V_1^2)-(M_Starship+mass)*G*M_Eath-0.5*Ro*k*S*(V_1^2)*S_atmos)/Lambda;
     } 
 printf ("The time of the flight in atmosphere is: %f seconds\n", t_atmos);
 printf ("The fuel consumption per atmosphere is: %f kilograms\n", fuel_atmos);
