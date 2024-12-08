@@ -52,6 +52,7 @@ int main(void)
     k = 0.5;  // Коэфициент сопротивления формы грубо
     S = 3; //площадь поперечного сечения !! очень грубо пока !!!
 
+// Пресмятане на първата част от пътя: атмосферата
 
     if (first_choose == 1)  // Потребителя е избрал за дестинация Луната
     {
@@ -69,5 +70,64 @@ int main(void)
     } 
 printf ("The time of the flight in atmosphere is: %f seconds\n", t_atmos);
 printf ("The fuel consumption per atmosphere is: %f kilograms\n", fuel_atmos);
-// printf ("The total time of the flight is: %f \n", t_all);
+
+
+// трябва да напиша функция за масса: M_Starship + mass
+
+
+
+// Пресмятане на втората част от пътя: космоса, далеч от планетите
+
+    if (first_choose == 1)
+    {
+        S_space = ;
+
+        t_space = ;
+
+        fuel_space = ;
+
+    }
+
+    else if (first_choose == 2)
+    {
+        S_space = ;
+
+        t_space = ;
+
+        fuel_space = ;
+
+    }
+printf ("The time of the flight in space is: %f seconds\n", t_space);
+printf ("The fuel consumption per space is: %f kilograms\n", fuel_space);
+
+// Пресмятане на третата част от пътя: космоса, близо до втората планета така, 
+// че ракетата трябва да се забавя, за да спре
+
+
+    if (first_choose == 1)
+    {
+        S_landing = ;
+
+        t_landing = ;
+
+        fuel_landing = ;
+
+    }
+
+    else if (first_choose == 2)
+    {
+        S_landing = ;
+
+        t_landing = ;
+
+        fuel_landing = ;
+
+    }
+printf ("The time of the flight in landing is: %f seconds\n", t_landing);
+printf ("The fuel consumption per landing is: %f kilograms\n", fuel_landing);
+
+
+printf ("The total distance of the flight is: %f \n meters", S_all);
+printf ("The total time of the flight is: %f \n seconds", t_all);
+printf ("The fuel consumption of the flight is: %f \n kilograms of liquid methane", fuel_all);
 }
