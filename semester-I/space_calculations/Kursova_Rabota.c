@@ -18,7 +18,7 @@ int main(void)
     float S_all, S_atmos, S_space, S_landing;
     float t_all, t_atmos, t_space, t_landing;
     float fuel_all, fuel_atmos, fuel_space, fuel_landing;
-    long V_1, M_Eath;
+    long V_1, M_Eath, v_space, m_space;
     float G;
 
     printf ("Choose the destination: 1 - Moon \n");
@@ -39,6 +39,7 @@ int main(void)
     t_all = t_atmos + t_space + t_landing;
     fuel_all = fuel_atmos + fuel_space + fuel_landing;
     S_atmos = 50000;
+    S_landing = 40000;
     R_Eath = 6378000;
     M_Starship = 4*10^6;
     V_1 = 7800;
@@ -51,6 +52,8 @@ int main(void)
     Ro = 1.2754;  // плотность воздуха
     k = 0.5;  // Коэфициент сопротивления формы грубо
     S = 3; //площадь поперечного сечения !! очень грубо пока !!!
+    v_space = 7222,2;  // Скоростта на ракета в космоса
+ 
 
 // Пресмятане на първата част от пътя: атмосферата
 
@@ -80,34 +83,39 @@ printf ("The fuel consumption per atmosphere is: %f kilograms\n", fuel_atmos);
 
     if (first_choose == 1)
     {
-        S_space = ;
+        S_space = 384400000 - S_atmos - S_landing - R_Eath - 1737400;
 
-        t_space = ;
+        t_space = S_space/v_space;
 
-        fuel_space = ;
+        m_space = M_Starship + mass - fuel_atmos;
 
+//      fuel_space = (m_space*g*(R_Eath+S_atmos)+0.5*m_space*(V_1^2)-0.5*m_space*(v_space^2))/(Lambda);
+
+        fuel_space = (75000000*S_space)/Lambda;
     }
 
     else if (first_choose == 2)
     {
-        S_space = ;
+        S_space = 225000000000 - S_atmos - S_landing - R_Eath - 3389000;
 
-        t_space = ;
+        t_space = S_space/v_space;
 
-        fuel_space = ;
+        m_space = M_Starship + mass - fuel_atmos;
 
+//      fuel_space = (m_space*g*(R_Eath+S_atmos)+0.5*m_space*(V_1^2)-0.5*m_space*(v_space^2))/(Lambda);
+
+        fuel_space = (75000000*S_space)/Lambda;
     }
+
 printf ("The time of the flight in space is: %f seconds\n", t_space);
 printf ("The fuel consumption per space is: %f kilograms\n", fuel_space);
 
 // Пресмятане на третата част от пътя: космоса, близо до втората планета така, 
 // че ракетата трябва да се забавя, за да спре
 
-
+/*
     if (first_choose == 1)
     {
-        S_landing = ;
-
         t_landing = ;
 
         fuel_landing = ;
@@ -116,8 +124,6 @@ printf ("The fuel consumption per space is: %f kilograms\n", fuel_space);
 
     else if (first_choose == 2)
     {
-        S_landing = ;
-
         t_landing = ;
 
         fuel_landing = ;
@@ -130,4 +136,8 @@ printf ("The fuel consumption per landing is: %f kilograms\n", fuel_landing);
 printf ("The total distance of the flight is: %f \n meters", S_all);
 printf ("The total time of the flight is: %f \n seconds", t_all);
 printf ("The fuel consumption of the flight is: %f \n kilograms of liquid methane", fuel_all);
+*/
 }
+
+
+// !!! Пересчитать все вычисления на калькуляторе на всякий случай !!!
