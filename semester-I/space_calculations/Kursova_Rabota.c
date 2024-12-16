@@ -24,17 +24,13 @@ int main(void)
 
     printf ("Choose the destination: 1 - Moon \n");
     printf ("Choose the destination: 2 - Mars \n");
+    printf ("To chouse press 1 or 2 \n");
     scanf ("%d", &first_choose);
 
 
-    printf ("Enter the mass of the product in kg: \n");
+    printf ("Enter the mass of the product you want to send on the destination (in kg): \n");
     scanf ("%lf", &mass);
 
-
-/*
-    Започва да се пресмята време за пътуване, като се отчитат климатичните условия
-    в даден момент на 
-*/
 
     S_atmos = 50000;
     S_landing = 40000;
@@ -149,11 +145,9 @@ int main(void)
     if (details == "d" || details == "D")
     {
         printf ("The journey is divided into 3 parts: atmosphere, space and landing \n");
-        printf ("");
 
         printf ("The time of the flight in atmosphere is: %f seconds \n", t_atmos);
         printf ("The fuel consumption per atmosphere is: %f kilograms \n", fuel_atmos);
-        printf ("");
    
         printf ("The time of the flight in space is: %f seconds \n", t_space);
         printf ("The fuel consumption per space is: %f kilograms \n", fuel_space);
@@ -170,6 +164,17 @@ int main(void)
 }
 
 
-// Ошибка в формулах !!! Очень большие числа !!
+/* Ошибка в формулах !!! Очень большие числа !!
+
+    total distance - годиться, хорошее значение, соответствующее реальности
+
+    total time - примерно 36 дней, что очень много -->> проверить time_... 
+    Также лучше выдавать время в ч и мин, что удобнее -->> изменить немного код...
+
+    total fuel - 562 млн тонн, что очень много -->> проверить fuel_...
+
+    Разобраться, почему последний IF не работает для d/E или e/E
+*/
+
 
 // !!! Пересчитать все вычисления на калькуляторе, лучше на  MAPLE !! на всякий случай !!!
