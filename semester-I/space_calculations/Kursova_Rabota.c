@@ -13,14 +13,13 @@
 
 int main(void)
 {
-    int first_choose;
+    int first_choose, details;
     double mass, M_Starship, R_Eath, R_Moon, R_Mars, Lambda, g, Ro, k, S;
     float S_all, S_atmos, S_space, S_landing;
     float t_all, t_atmos, t_space, t_landing, t_all_min, t_all_hour;
     float fuel_all, fuel_atmos, fuel_space, fuel_landing;
     long V_1, M_Eath, v_space, m_space, m_landing, M_Moon, M_Mars;
     float G;
-    char details, e, d;
 
     printf ("Choose the destination: 1 - Moon \n");
     printf ("Choose the destination: 2 - Mars \n");
@@ -131,42 +130,45 @@ int main(void)
     t_all = t_atmos + t_space + t_landing;
     t_all_min = t_all/60;  // В минутах
     t_all_hour = t_all/3600; // В часах
-    
+  
     fuel_all = fuel_atmos + fuel_space + fuel_landing;
 
 
-    printf ("The total distance of the flight is: %f  kilometers \n", S_all);
+    printf ("\t The total distance of the flight is: %f  kilometers \n", S_all);
 
-    printf ("t_all = %f \n", t_all);
+    printf ("t_all = %d \n", t_all);
 
-    printf ("The total time of the flight is: %f  hours   %f  minutes \n", t_all_hour, t_all_min);
+    printf ("\t The total time of the flight is: %d  hours   %d  minutes \n", t_all_hour, t_all_min);
 
-    printf ("The fuel consumption of the flight is: %f  kilograms of liquid methane \n", fuel_all);
+    printf ("\t The fuel consumption of the flight is: %f  kilograms of liquid methane \n", fuel_all);
 
-    printf ("atmos: %f \n", t_atmos);
-    printf ("space: %f \n", t_space);
-    printf ("landing: %f \n", t_landing);
+    printf ("atmos: %d \n", t_atmos);
+    printf ("space: %d \n", t_space);
+    printf ("landing: %d \n", t_landing);
 
-    printf("If you want to see a details, press d \n");
-    printf("If you don't want to, press e \n");
-    scanf ("%ch", &details);
+    printf("If you want to see a details, press 1 \n");
+    printf("If you don't want to, press 2 \n");
+    scanf ("%d", &details);
 
-    if (details == d)
+    if (details == 1)
     {
         printf ("The journey is divided into 3 parts: atmosphere, space and landing \n");
 
-        printf ("The time of the flight in atmosphere is: %f seconds \n", t_atmos);
-        printf ("The fuel consumption per atmosphere is: %f kilograms \n", fuel_atmos);
+        printf("About atmosphere : \n");
+        printf ("\t The time of the flight in atmosphere is: %d seconds \n", t_atmos);
+        printf ("\t The fuel consumption per atmosphere is: %f kilograms \n", fuel_atmos);
    
-        printf ("The time of the flight in space is: %f seconds \n", t_space);
-        printf ("The fuel consumption per space is: %f kilograms \n", fuel_space);
+        printf("About space : \n");
+        printf ("\t The time of the flight in space is: %d seconds \n", t_space);
+        printf ("\t The fuel consumption per space is: %f kilograms \n", fuel_space);
 
-        printf ("The time of the flight in landing is: %f seconds \n", t_landing);
-        printf ("The fuel consumption per space is: %f kilograms \n", fuel_landing);
+        printf("About landing : \n");
+        printf ("\t The time of the flight in landing is: %d seconds \n", t_landing);
+        printf ("\t The fuel consumption per space is: %f kilograms \n", fuel_landing);
     }
-    else if (details == e)
+    else if (details == 2)
     {
-        printf ("Bye bue");
+        printf ("\t Bye bue \n");
     }
 
     return 0;
@@ -175,15 +177,15 @@ int main(void)
 
 /* Ошибка в формулах !!! Очень большие числа !!
 
-    total distance - годиться, хорошее значение, соответствующее реальности
-
     total time - примерно 36 дней, что очень много -->> проверить time_... 
         ДОЛЖНО БЫТЬ ПРИМЕРНО 3 ДНЯ ! (примерно 290 000 секунд)
     Также лучше выдавать время в ч и мин, что удобнее -->> изменить немного код...
 
     total fuel - 562 млн тонн, что очень много -->> проверить fuel_...
+    
 
-    Разобраться, почему последний IF не работает для d/E или e/E
+    total time и total fuel неправильны не из-за неправильных рассчетов по физике,
+    а из-за неправильных типов переменных "can change value" !!!Разобраться с типом переменных
 */
 
 
