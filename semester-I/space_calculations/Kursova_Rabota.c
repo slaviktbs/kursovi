@@ -1,32 +1,35 @@
 /*
-    Програмата пресмята расхода на горивото, време за пътуване от Земя до Луна/Марс
-    от космодром "НАЗВАНИЕТО", със ракета Starship на кампанията SpaceX
-    като исползва дани въведени от потребител: 
+    Програмата пресмята расхода на горивото, време за пътуване от Земя до Луна/Марс, със ракета Starship на кампанията SpaceX, като исползва дани въведени от потребител: 
         дистинацията (destination)
         масата на товара (mass)
-    също така използва даните за времето във космодром "НАЗВАНИЕ" (взима се от интернет, съхранява се във файла и се използва от програмата)
+    ** също така използва даните за времето във космодром "НАЗВАНИЕ" (взима се от интернет, съхранява се във файла и се използва от програмата)
         
         
 */
+
 #include <stdio.h>
+#include<math.h>
 
 
 int main(void)
 {
     int first_choose, details;
     double mass, M_Starship, R_Eath, R_Moon, R_Mars, Lambda, g, Ro, k, S;
-    float S_all, S_atmos, S_space, S_landing;
+ // float S_all, S_atmos, S_space, S_landing;
     long V_1, v_space, m_space, m_landing, M_Moon, M_Mars;
 
-    unsigned G, M_Eath, t_all, t_atmos, t_space, t_landing, t_all_min, t_all_hour, fuel_all, fuel_atmos, fuel_space, fuel_landing;
+    unsigned G, ATPOSPHERE [3], SPACE [3], LANDING [3], S_all, S_atmos, S_space, S_landing, M_Eath, t_all, t_atmos, t_space, t_landing, t_all_min, t_all_hour, fuel_all, fuel_atmos, fuel_space, fuel_landing;
 
-    printf ("Choose the destination: 1 - Moon \n");
-    printf ("Choose the destination: 2 - Mars \n");
+    printf ("Welcome to interplanetary travel ! \n\n");
+
+    printf ("Choose the destination: \n");
+    printf ("\t 1 - Moon \n");
+    printf ("\t 2 - Mars \n\n");
     printf ("To chouse press 1 or 2 \n");
     scanf ("%d", &first_choose);
 
 
-    printf ("Enter the mass of the product you want to send on the destination (in kg): \n");
+    printf ("\nEnter the mass of the product you want to send on the destination (in kg): \n");
     scanf ("%lf", &mass);
 
 
@@ -131,7 +134,7 @@ int main(void)
     fuel_all = fuel_atmos + fuel_space + fuel_landing;
 
 
-    printf ("\t The total distance of the flight is: %f  kilometers \n", S_all);
+    printf ("\n\n \t The total distance of the flight is: %f  kilometers \n", S_all);
 
     printf ("t_all = %u \n", t_all);
 
@@ -143,36 +146,54 @@ int main(void)
     printf ("space: %u \n", t_space);
     printf ("landing: %u \n", t_landing);
 
-    printf("If you want to see a details, press 1 \n");
+    printf("\nIf you want to see a details, press 1 \n");
     printf("If you don't want to, press 2 \n");
     scanf ("%d", &details);
 
+    ATPOSPHERE[0] = S_atmos;
+    ATPOSPHERE[1] = t_atmos;
+    ATPOSPHERE[2] = fuel_atmos;
+
+    SPACE[0] = S_space;
+    SPACE[1] = t_space;
+    SPACE[2] = fuel_space;
+
     if (details == 1)
     {
-        printf ("The journey is divided into 3 parts: atmosphere, space and landing \n");
+        printf ("\n\n The journey is divided into 3 parts: atmosphere, space and landing \n\n ");
 
         printf("About atmosphere : \n");
-        printf ("\t The time of the flight in atmosphere is: %u seconds \n", t_atmos);
-        printf ("\t The fuel consumption per atmosphere is: %u kilograms \n", fuel_atmos);
-   
+        printf ("\t The distance of the flight in atmosphere is: %f meters \n \t The time of the flight in atmosphere is: %u seconds \n \t The fuel consumption per atmosphere is: %u kilograms \n", ATPOSPHERE[0,1,2]);
+
         printf("About space : \n");
+        printf ("\t The distance of the flight in space is: %f meters \n, \t The time of the flight in space is: %u seconds \n, \t The fuel consumption per space is: %u kilograms \n\n", SPACE[0,1,2]);
+
+
+        /*
         printf ("\t The time of the flight in space is: %u seconds \n", t_space);
         printf ("\t The fuel consumption per space is: %u kilograms \n", fuel_space);
 
         printf("About landing : \n");
         printf ("\t The time of the flight in landing is: %u seconds \n", t_landing);
         printf ("\t The fuel consumption per landing is: %u kilograms \n", fuel_landing);
+*/
     }
     else if (details == 2)
     {
-        printf ("\t Bye bue \n");
+        printf ("\nBye bue \n\n");
     }
 
     return 0;
 }
 
 
-/* Ошибка в формулах !!! Очень большие числа !!
+/* ОШИБКА В ФОРМАТЕ ЧИСЕЛ  И ПЕРЕМЕННЫХ
+        ПРОВЕРИТЬ, КОНЕЧНО, ФОРМУЛЫ И РАСЧЕТЫ
+        ПРОСЧИТАТЬ ВСЕ НА БУМАГЕ -> ПОЛУЧИТЬ ЧИСЛА (вычисления на калькуляторе, лучше на  MAPLE), СРАВНИТЬ С ЧИСЛАМИ В ПРОГРАМЕ
+        ПОМЕНЯТЬ ТИП ПЕРЕМЕННЫХ 
+        СДЕЛАТЬ КОММЕНТАРИИ НА АНГЛИЙСКОМ
+
+
 
     total time - примерно 36 дней, что очень много -->> проверить time_... 
         ДОЛЖНО БЫТЬ ПРИМЕРНО 3 ДНЯ ! (примерно 290 000 секунд)
@@ -183,7 +204,21 @@ int main(void)
 
     total time и total fuel неправильны не из-за неправильных рассчетов по физике,
     а из-за неправильных типов переменных "can change value" !!!Разобраться с типом переменных
+
+
+    то, что НУЖНО ДОДЕЛАТЬ:
+        функция 
+            m = mass+M_Starship
+        массив
+            atmosphere:
+                time
+                fuel
+                s
+            space:
+            ...
+            landing
+            ... 
+        
+
+
 */
-
-
-// !!! Пересчитать все вычисления на калькуляторе, лучше на  MAPLE !! на всякий случай !!!
