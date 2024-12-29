@@ -14,11 +14,13 @@
 int main(void)
 {
     int first_choose, details;
-    double mass, M_Starship, R_Eath, R_Moon, R_Mars, Lambda, g, Ro, k, S;
+/*  double mass, M_Starship, R_Eath, R_Moon, R_Mars, Lambda, g, Ro, k, S;
  // float S_all, S_atmos, S_space, S_landing;
     long V_1, v_space, m_space, m_landing, M_Moon, M_Mars;
 
     unsigned G, ATPOSPHERE [3], SPACE [3], LANDING [3], S_all, S_atmos, S_space, S_landing, M_Eath, t_all, t_atmos, t_space, t_landing, t_all_min, t_all_hour, fuel_all, fuel_atmos, fuel_space, fuel_landing;
+*/
+    float mass, M_Starship, R_Eath, R_Moon, R_Mars, Lambda, g, Ro, k, S, S_all, S_atmos, S_space, S_landing, V_1, v_space, m_space, m_landing, M_Moon, M_MarsG, ATPOSPHERE [3], SPACE [3], LANDING [3], S_all, S_atmos, S_space, S_landing, M_Eath, t_all, t_atmos, t_space, t_landing, t_all_min, t_all_hour, fuel_all, fuel_atmos, fuel_space, fuel_landing;
 
     printf ("Welcome to interplanetary travel ! \n\n");
 
@@ -38,20 +40,21 @@ int main(void)
     R_Eath = 6378000;
     R_Moon = 1737000;
     R_Mars = 3390000;
-    M_Starship = 4*10^6;
+    M_Starship = 4000000;
     V_1 = 7910;
     Lambda = 50200000;
   //G = 6.67430*10^-11;
-    G = 0.0000000000667430;
-    g = 9,8;
+  //G = 0.0000000000667430  
+    G = 6.6743E-11;
+    g = 98E-1;
  // M_Eath = 5.9722*10^24;
     M_Eath = 59722*10^20;
-    M_Moon = 735*10^20;
-    M_Mars = 6417*10^20;
+    M_Moon = 7.35E22;
+    M_Mars = 6.417E23;
     Ro = 1.2754;  // плотность воздуха
     k = 0.5;  // Коэфициент сопротивления формы грубо
     S = 3; //площадь поперечного сечения !! очень грубо пока !!!
-    v_space = 7222,2;  // Скоростта на ракета в космоса
+    v_space = 7222.2;  // Скоростта на ракета в космоса
     
  
 
@@ -136,15 +139,15 @@ int main(void)
 
     printf ("\n\n \t The total distance of the flight is: %f  kilometers \n", S_all);
 
-    printf ("t_all = %u \n", t_all);
+ //   printf ("t_all = %f \n", t_all);
 
-    printf ("\t The total time of the flight is: %u  hours   %u  minutes \n", t_all_hour, t_all_min);
+  //printf ("\t The total time of the flight is: %u  hours   %f  minutes \n", t_all_hour, t_all_min);
 
-    printf ("\t The fuel consumption of the flight is: %u  kilograms of liquid methane \n", fuel_all);
+    printf ("\t The fuel consumption of the flight is: %f  kilograms of liquid methane \n", fuel_all);
 
-    printf ("atmos: %u \n", t_atmos);
-    printf ("space: %u \n", t_space);
-    printf ("landing: %u \n", t_landing);
+    printf ("atmos: %f \n", t_atmos);
+    printf ("space: %f \n", t_space);
+    printf ("landing: %f \n", t_landing);
 
     printf("\nIf you want to see a details, press 1 \n");
     printf("If you don't want to, press 2 \n");
@@ -163,10 +166,10 @@ int main(void)
         printf ("\n\n The journey is divided into 3 parts: atmosphere, space and landing \n\n ");
 
         printf("About atmosphere : \n");
-        printf ("\t The distance of the flight in atmosphere is: %f meters \n \t The time of the flight in atmosphere is: %u seconds \n \t The fuel consumption per atmosphere is: %u kilograms \n", ATPOSPHERE[0,1,2]);
+        printf ("\t The distance of the flight in atmosphere is: %f meters \n \t The time of the flight in atmosphere is: %f seconds \n \t The fuel consumption per atmosphere is: %f kilograms \n", ATPOSPHERE[0,1,2]);
 
         printf("About space : \n");
-        printf ("\t The distance of the flight in space is: %f meters \n, \t The time of the flight in space is: %u seconds \n, \t The fuel consumption per space is: %u kilograms \n\n", SPACE[0,1,2]);
+        printf ("\t The distance of the flight in space is: %f meters \n, \t The time of the flight in space is: %f seconds \n, \t The fuel consumption per space is: %f kilograms \n\n", SPACE[0,1,2]);
 
 
         /*
