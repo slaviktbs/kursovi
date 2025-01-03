@@ -54,7 +54,7 @@ int main(void)
     Ro = 1.2754;  // плотность воздуха
     k = 0.5;  // Коэфициент сопротивления формы грубо
     S = 3; //площадь поперечного сечения !! очень грубо пока !!!
-    v_space = 7222.2;  // Скоростта на ракета в космоса
+    v_space = 1444.44;  // Скоростта на ракета в космоса
     
  
 
@@ -101,9 +101,9 @@ int main(void)
 
         t_space = S_space/v_space;
 
-        m_space = M_Starship + mass - fuel_atmos;
+        m_space = M_Starship + mass - fuel_atmos;     // 1590080
 
-//      fuel_space = (m_space*g*(R_Eath+S_atmos)+0.5*m_space*(V_1^2)-0.5*m_space*(v_space^2))/(Lambda);
+//      fuel_space = (m_space*g*(R_Eath+S_atmos)+0.5*m_space*(V_1^2)-0.5*m_space*(v_space^2))/(Lambda);      // 1.04*10^14+0.5*... -0.5*...
 
         fuel_space = (75000000*S_space)/Lambda;
     }
@@ -117,7 +117,7 @@ int main(void)
     {
         t_landing = (2*S_landing)/v_space;
 
-       m_landing = M_Starship + mass - fuel_atmos - fuel_space;
+        m_landing = M_Starship + mass - fuel_atmos - fuel_space;
 
         fuel_landing = ((m_landing*M_Moon*G)/R_Moon - 0,5*m_landing*(v_space^2) + m_landing*M_Moon*G/(R_Moon+S_landing))/Lambda;
 
