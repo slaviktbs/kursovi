@@ -2,7 +2,7 @@
     Програмата пресмята расхода на горивото, време за пътуване от Земя до Луна/Марс, със ракета Starship на кампанията SpaceX, като исползва дани въведени от потребител: 
         дистинацията (destination)
         масата на товара (mass)
-    ** също така използва даните за времето във космодром "НАЗВАНИЕ" (взима се от интернет, съхранява се във файла и се използва от програмата)
+    ** също така използва даните за времето в космодром "НАЗВАНИЕ" (взима се от интернет, съхранява се във файла и се използва от програмата)
         
         
 */
@@ -20,7 +20,26 @@ int main(void)
 
     unsigned G, ATPOSPHERE [3], SPACE [3], LANDING [3], S_all, S_atmos, S_space, S_landing, M_Eath, t_all, t_atmos, t_space, t_landing, t_all_min, t_all_hour, fuel_all, fuel_atmos, fuel_space, fuel_landing;
 */
-    float mass, M_Starship, R_Eath, R_Moon, R_Mars, Lambda, g, Ro, k, S, S_all, S_atmos, S_space, S_landing, V_1, v_space, m_space, m_landing, M_Moon, M_MarsG, ATPOSPHERE [3], SPACE [3], LANDING [3], S_all, S_atmos, S_space, S_landing, M_Eath, t_all, t_atmos, t_space, t_landing, t_all_min, t_all_hour, fuel_all, fuel_atmos, fuel_space, fuel_landing;
+    float mass, M_Starship, R_Eath, R_Moon, R_Mars, Lambda, g, Ro, k, S, V_1, v_space, m_space, m_landing, M_Moon, M_Mars, G, S_all, S_atmos, S_space, S_landing, M_Eath, t_all, t_atmos, t_space, t_landing, t_all_min, t_all_hour, fuel_all, fuel_atmos, fuel_space, fuel_landing;
+
+    float ATPOSPHERE[3];
+    float LANDING[3];
+    float SPACE[3];
+
+    ATPOSPHERE[0] = S_atmos;
+    ATPOSPHERE[1] = t_atmos;
+    ATPOSPHERE[2] = fuel_atmos;
+
+    SPACE[0] = S_space;
+    SPACE[1] = t_space;
+    SPACE[2] = fuel_space;
+
+    LANDING[0] = S_landing;
+    LANDING[1] = t_landing;
+    LANDING[2] = fuel_landing;
+
+    //_array ATPOSPHERE[3] = {S_atmos, t_atmos, fuel_atmos};
+
 
     printf ("Welcome to interplanetary travel ! \n\n");
 
@@ -32,7 +51,7 @@ int main(void)
 
 
     printf ("\nEnter the mass of the product you want to send on the destination (in kg): \n");
-    scanf ("%lf", &mass);
+    scanf ("%f", &mass);
 
 
     S_atmos = 150000;
@@ -57,6 +76,8 @@ int main(void)
     v_space = 1444.44;  // Скоростта на ракета в космоса
     
  
+//printf(Parallel.Foreach(ATPOSPHERE, Console.WriteLine));
+
 
 // Пресмятане на първата част от пътя: атмосферата
 
@@ -64,15 +85,16 @@ int main(void)
     {
         t_atmos = (2*S_atmos)/V_1;
 
-        fuel_atmos=((M_Starship+mass)*g*R_Eath-0.5*(M_Starship+mass)*(V_1^2)-(M_Starship+mass)*G*M_Eath-0.5*Ro*k*S*(V_1^2)*S_atmos)/Lambda;
-
+        fuel_atmos=((M_Starship+mass)*g*R_Eath-0.5*(M_Starship+mass)*(V_1*V_1)-(M_Starship+mass)*G*M_Eath-0.5*Ro*k*S*(V_1*V_1)*S_atmos)/Lambda;
+        //fuel_atmos=5;
     }
 
     else if (first_choose == 2)  // Потребителя е избрал за дестинация Марс
     {
        t_atmos = (2*S_atmos)/V_1;
 
-       fuel_atmos=((M_Starship+mass)*g*R_Eath-0.5*(M_Starship+mass)*(V_1^2)-(M_Starship+mass)*G*M_Eath-0.5*Ro*k*S*(V_1^2)*S_atmos)/Lambda;
+       fuel_atmos=((M_Starship+mass)*g*R_Eath-0.5*(M_Starship+mass)*(V_1*V_1)-(M_Starship+mass)*G*M_Eath-0.5*Ro*k*S*(V_1*V_1)*S_atmos)/Lambda;
+        //fuel_atmos=6;
     } 
 
 
@@ -119,24 +141,26 @@ int main(void)
 
         m_landing = M_Starship + mass - fuel_atmos - fuel_space;
 
-        fuel_landing = ((m_landing*M_Moon*G)/R_Moon - 0,5*m_landing*(v_space^2) + m_landing*M_Moon*G/(R_Moon+S_landing))/Lambda;
-
+        fuel_landing = ((m_landing*M_Moon*G)/R_Moon - 0,5*m_landing*(v_space*v_space) + m_landing*M_Moon*G/(R_Moon+S_landing))/Lambda;
+        //fuel_landing=7;
     }
 
     else if (first_choose == 2)
     {
         t_landing = (2*S_landing)/v_space;
 
-        fuel_landing = ((m_landing*M_Mars*G)/R_Mars - 0,5*m_landing*(v_space^2) + m_landing*M_Mars*G/(R_Mars+S_landing))/Lambda;;
+        fuel_landing = ((m_landing*M_Mars*G)/R_Mars - 0,5*m_landing*(v_space*v_space) + m_landing*M_Mars*G/(R_Mars+S_landing))/Lambda;;
+        // fuel_landing=3;
     }
 
-    S_all = (S_atmos + S_space + S_landing)/1000;
+    S_all = (S_atmos + S_space + S_landing);
 
     t_all = t_atmos + t_space + t_landing;
 
     fuel_all = fuel_atmos + fuel_space + fuel_landing;
 
-
+/*
+    printf("%f", fuel_landing);
     printf ("\n\n \t The total distance of the flight is: %f  kilometers \n", S_all);
 
  //   printf ("t_all = %f \n", t_all);
@@ -149,9 +173,7 @@ int main(void)
     printf ("space: %f \n", t_space);
     printf ("landing: %f \n", t_landing);
 
-    printf("\nIf you want to see a details, press 1 \n");
-    printf("If you don't want to, press 2 \n");
-    scanf ("%d", &details);
+   
 
     ATPOSPHERE[0] = S_atmos;
     ATPOSPHERE[1] = t_atmos;
@@ -160,16 +182,41 @@ int main(void)
     SPACE[0] = S_space;
     SPACE[1] = t_space;
     SPACE[2] = fuel_space;
+*/
+    printf("\nIf you want to see a details, press 1 \n");
+    printf("If you don't want to, press 2 \n");
+    scanf ("%d", &details);
 
     if (details == 1)
     {
+
+        printf("Atmosphere \n");
+        printf("%f \n", S_atmos);
+        printf("%f \n", t_atmos);
+        printf("%f \n\n", fuel_atmos);
+
+      //  printf("%f", ATMO)
+
+        printf("Space \n");
+        printf("%f \n", S_space);
+        printf("%f \n", t_space);   // ОШИБКА
+        printf("%f \n\n", fuel_space);  
+
+        printf("Landing \n");
+        printf("%f \n", S_landing);
+        printf("%f \n", t_landing);
+        printf("%f \n\n", fuel_landing);
+
+        /*
         printf ("\n\n The journey is divided into 3 parts: atmosphere, space and landing \n\n ");
 
         printf("About atmosphere : \n");
-        printf ("\t The distance of the flight in atmosphere is: %f meters \n \t The time of the flight in atmosphere is: %f seconds \n \t The fuel consumption per atmosphere is: %f kilograms \n", ATPOSPHERE[0,1,2]);
+        printf ("\t The distance of the flight in atmosphere is: %f /n/n/r");
+
+        //printf ("\t The distance of the flight in atmosphere is: %f meters \n \t The time of the flight in atmosphere is: %f seconds \n \t The fuel consumption per atmosphere is: %f kilograms \n", ATPOSPHERE[0], ATPOSPHERE[1], ATPOSPHERE[2]);
 
         printf("About space : \n");
-        printf ("\t The distance of the flight in space is: %f meters \n, \t The time of the flight in space is: %f seconds \n, \t The fuel consumption per space is: %f kilograms \n\n", SPACE[0,1,2]);
+        printf ("\t The distance of the flight in space is: %f meters \n, \t The time of the flight in space is: %f seconds \n, \t The fuel consumption per space is: %f kilograms \n\n", SPACE[0], SPACE[1], SPACE[2]);
 
 
         /*
@@ -192,7 +239,7 @@ int main(void)
 
 /* ОШИБКА В ФОРМАТЕ ЧИСЕЛ  И ПЕРЕМЕННЫХ
         ПРОВЕРИТЬ, КОНЕЧНО, ФОРМУЛЫ И РАСЧЕТЫ
-        ПРОСЧИТАТЬ ВСЕ НА БУМАГЕ -> ПОЛУЧИТЬ ЧИСЛА (вычисления на калькуляторе, лучше на  MAPLE), СРАВНИТЬ С ЧИСЛАМИ В ПРОГРАМЕ
+        ПРОСЧИТАТЬ ВСЕ НА БУМАГЕ -> ПОЛУЧИТЬ ЧИСЛА (вычисления на калькуляторе, лучше на  MAPLE), СРАВНИТЬ С ЧИСЛАМИ В ПРОГРАММЕ
         ПОМЕНЯТЬ ТИП ПЕРЕМЕННЫХ 
         СДЕЛАТЬ КОММЕНТАРИИ НА АНГЛИЙСКОМ
 
