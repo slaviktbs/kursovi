@@ -10,36 +10,21 @@
 #include <stdio.h>
 #include<math.h>
 
+float mass_func (float M_Starship, float mass)
+    {
+        return M_Starship + mass;
+    }
 
 int main(void)
 {
     int first_choose, details;
-/*  double mass, M_Starship, R_Eath, R_Moon, R_Mars, Lambda, g, Ro, k, S;
- // float S_all, S_atmos, S_space, S_landing;
-    long V_1, v_space, m_space, m_landing, M_Moon, M_Mars;
 
-    unsigned G, ATPOSPHERE [3], SPACE [3], LANDING [3], S_all, S_atmos, S_space, S_landing, M_Eath, t_all, t_atmos, t_space, t_landing, t_all_min, t_all_hour, fuel_all, fuel_atmos, fuel_space, fuel_landing;
-*/
-    float mass, M_Starship, R_Eath, R_Moon, R_Mars, Lambda, g, Ro, k, S, V_1, v_space, m_space, m_landing, M_Moon, M_Mars, G, S_all, S_atmos, S_space, S_landing, M_Eath, t_all, t_atmos, t_space, t_landing, t_all_min, t_all_hour, fuel_all, fuel_atmos, fuel_space, fuel_landing;
+    float mass, M_Starship, R_Moon, R_Mars, Lambda, g, Ro, k, S, V_1, v_space, m_space, m_landing, M_Moon, M_Mars, G, S_all, S_space, S_atmos, S_landing, M_Eath, t_all, t_atmos, t_space, t_landing, t_all_min, t_all_hour, fuel_all, fuel_atmos, fuel_space, fuel_landing;
+    const float R_Eath = 6378000;;
 
     float ATPOSPHERE[3];
     float LANDING[3];
     float SPACE[3];
-
-    ATPOSPHERE[0] = S_atmos;
-    ATPOSPHERE[1] = t_atmos;
-    ATPOSPHERE[2] = fuel_atmos;
-
-    SPACE[0] = S_space;
-    SPACE[1] = t_space;
-    SPACE[2] = fuel_space;
-
-    LANDING[0] = S_landing;
-    LANDING[1] = t_landing;
-    LANDING[2] = fuel_landing;
-
-    //_array ATPOSPHERE[3] = {S_atmos, t_atmos, fuel_atmos};
-
 
     printf ("Welcome to interplanetary travel ! \n\n");
 
@@ -56,7 +41,6 @@ int main(void)
 
     S_atmos = 150000;
     S_landing = 40000;
-    R_Eath = 6378000;
     R_Moon = 1737000;
     R_Mars = 3390000;
     M_Starship = 4000000;
@@ -74,10 +58,6 @@ int main(void)
     k = 0.5;  // Коэфициент сопротивления формы грубо
     S = 3; //площадь поперечного сечения !! очень грубо пока !!!
     v_space = 1444.44;  // Скоростта на ракета в космоса
-    
- 
-//printf(Parallel.Foreach(ATPOSPHERE, Console.WriteLine));
-
 
 // Пресмятане на първата част от пътя: атмосферата
 
@@ -85,7 +65,7 @@ int main(void)
     {
         t_atmos = (2*S_atmos)/V_1;
 
-        fuel_atmos=((M_Starship+mass)*g*R_Eath-0.5*(M_Starship+mass)*(V_1*V_1)-(M_Starship+mass)*G*M_Eath-0.5*Ro*k*S*(V_1*V_1)*S_atmos)/Lambda;
+        fuel_atmos=(mass_func(M_Starship, mass)*g*R_Eath-0.5*mass_func(M_Starship, mass)*(V_1*V_1)-mass_func(M_Starship, mass)*G*M_Eath-0.5*Ro*k*S*(V_1*V_1)*S_atmos)/Lambda;
         //fuel_atmos=5;
     }
 
@@ -93,13 +73,13 @@ int main(void)
     {
        t_atmos = (2*S_atmos)/V_1;
 
-       fuel_atmos=((M_Starship+mass)*g*R_Eath-0.5*(M_Starship+mass)*(V_1*V_1)-(M_Starship+mass)*G*M_Eath-0.5*Ro*k*S*(V_1*V_1)*S_atmos)/Lambda;
+       fuel_atmos=(mass_func(M_Starship, mass)*g*R_Eath-0.5*mass_func(M_Starship, mass)*(V_1*V_1)-mass_func(M_Starship, mass)*G*M_Eath-0.5*Ro*k*S*(V_1*V_1)*S_atmos)/Lambda;
         //fuel_atmos=6;
-    } 
+    }
 
-
-// трябва да напиша функция за масса: M_Starship + mass
-
+    ATPOSPHERE[0] = S_atmos;
+    ATPOSPHERE[1] = t_atmos;
+    ATPOSPHERE[2] = fuel_atmos;
 
 
 // Пресмятане на втората част от пътя: космоса, далеч от планетите
@@ -110,11 +90,10 @@ int main(void)
 
         t_space = S_space/v_space;
 
-        m_space = M_Starship + mass - fuel_atmos;
+        m_space = mass_func(M_Starship, mass) - fuel_atmos;
 
        fuel_space = (m_space*g*(R_Eath+S_atmos)+0.5*m_space*(V_1*V_1)-0.5*m_space*(v_space*v_space))/(Lambda);
 
-      //fuel_space = (75000000*S_space)/Lambda;
     }
 
     else if (first_choose == 2)
@@ -123,12 +102,15 @@ int main(void)
 
         t_space = S_space/v_space;
 
-        m_space = M_Starship + mass - fuel_atmos;     // 1590080
+        m_space = mass_func(M_Starship, mass) - fuel_atmos;     // 1590080
 
        fuel_space = (m_space*g*(R_Eath+S_atmos)+0.5*m_space*(V_1*V_1)-0.5*m_space*(v_space*v_space))/(Lambda);      
 
-      //fuel_space = (75000000*S_space)/Lambda;
     }
+
+    SPACE[0] = S_space;
+    SPACE[1] = t_space;
+    SPACE[2] = fuel_space;
 
 
 // Пресмятане на третата част от пътя: космоса, близо до втората планета така, 
@@ -139,7 +121,7 @@ int main(void)
     {
         t_landing = (2*S_landing)/v_space;
 
-        m_landing = M_Starship + mass - fuel_space;
+        m_landing = mass_func(M_Starship, mass) - fuel_space;
 
         fuel_landing = ((m_landing*M_Moon*G)/R_Moon - 0,5*m_landing*(v_space*v_space) + m_landing*M_Moon*G/(R_Moon+S_landing))/Lambda;
         
@@ -154,6 +136,10 @@ int main(void)
         
         //fuel_landing = (0,5*m_landing*(v_space*v_space) + m_landing*M_Moon*G/(R_Moon+S_landing))/Lambda;
     }
+
+    LANDING[0] = S_landing;
+    LANDING[1] = t_landing;
+    LANDING[2] = fuel_landing;
 
     S_all = (S_atmos + S_space + S_landing);
 
@@ -174,16 +160,6 @@ int main(void)
     printf ("atmos: %f \n", t_atmos);
     printf ("space: %f \n", t_space);
     printf ("landing: %f \n", t_landing);
-
-   
-
-    ATPOSPHERE[0] = S_atmos;
-    ATPOSPHERE[1] = t_atmos;
-    ATPOSPHERE[2] = fuel_atmos;
-
-    SPACE[0] = S_space;
-    SPACE[1] = t_space;
-    SPACE[2] = fuel_space;
 */
     printf("\nIf you want to see a details, press 1 \n");
     printf("If you don't want to, press 2 \n");
@@ -192,17 +168,27 @@ int main(void)
     if (details == 1)
     {
 
+        printf("%f \n\n", ATPOSPHERE[0]);
+        printf("%f \n\n", ATPOSPHERE[1]);
+        printf("%f \n\n", ATPOSPHERE[2]);
+
         printf("Atmosphere \n");
         printf("%f \n", S_atmos);
         printf("%f \n", t_atmos);
         printf("%f \n\n", fuel_atmos);
 
-      //  printf("%f", ATMO)
+        printf("%f \n\n", SPACE[0]);
+        printf("%f \n\n", SPACE[1]);
+        printf("%f \n\n", SPACE[2]);
 
         printf("Space \n");
         printf("%f \n", S_space);
         printf("%f \n", t_space);
         printf("%f \n\n", fuel_space);  
+
+         printf("%f \n\n", LANDING[0]);
+        printf("%f \n\n", LANDING[1]);
+        printf("%f \n\n", LANDING[2]);
 
         printf("Landing \n");
         printf("%f \n", S_landing);
@@ -240,6 +226,12 @@ int main(void)
 
 
 /*
+
+
+    Добавить СТЕПЕНЬ для скоростей (для math.h)
+
+
+
         ПРОВЕРИТЬ, КОНЕЧНО, ФОРМУЛЫ И РАСЧЕТЫ
         ПРОСЧИТАТЬ ВСЕ НА БУМАГЕ -> ПОЛУЧИТЬ ЧИСЛА (вычисления на калькуляторе, лучше на  MAPLE), СРАВНИТЬ С ЧИСЛАМИ В ПРОГРАММЕ
       
