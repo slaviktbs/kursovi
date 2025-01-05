@@ -112,9 +112,9 @@ int main(void)
 
         m_space = M_Starship + mass - fuel_atmos;
 
-//      fuel_space = (m_space*g*(R_Eath+S_atmos)+0.5*m_space*(V_1^2)-0.5*m_space*(v_space^2))/(Lambda);
+       fuel_space = (m_space*g*(R_Eath+S_atmos)+0.5*m_space*(V_1*V_1)-0.5*m_space*(v_space*v_space))/(Lambda);
 
-        fuel_space = (75000000*S_space)/Lambda;
+      //fuel_space = (75000000*S_space)/Lambda;
     }
 
     else if (first_choose == 2)
@@ -125,9 +125,9 @@ int main(void)
 
         m_space = M_Starship + mass - fuel_atmos;     // 1590080
 
-//      fuel_space = (m_space*g*(R_Eath+S_atmos)+0.5*m_space*(V_1^2)-0.5*m_space*(v_space^2))/(Lambda);      // 1.04*10^14+0.5*... -0.5*...
+       fuel_space = (m_space*g*(R_Eath+S_atmos)+0.5*m_space*(V_1*V_1)-0.5*m_space*(v_space*v_space))/(Lambda);      
 
-        fuel_space = (75000000*S_space)/Lambda;
+      //fuel_space = (75000000*S_space)/Lambda;
     }
 
 
@@ -139,10 +139,11 @@ int main(void)
     {
         t_landing = (2*S_landing)/v_space;
 
-        m_landing = M_Starship + mass - fuel_atmos - fuel_space;
+        m_landing = M_Starship + mass - fuel_space;
 
         fuel_landing = ((m_landing*M_Moon*G)/R_Moon - 0,5*m_landing*(v_space*v_space) + m_landing*M_Moon*G/(R_Moon+S_landing))/Lambda;
-        //fuel_landing=7;
+        
+        //fuel_landing = (0,5*m_landing*(v_space*v_space) + m_landing*M_Moon*G/(R_Moon+S_landing))/Lambda;
     }
 
     else if (first_choose == 2)
@@ -150,7 +151,8 @@ int main(void)
         t_landing = (2*S_landing)/v_space;
 
         fuel_landing = ((m_landing*M_Mars*G)/R_Mars - 0,5*m_landing*(v_space*v_space) + m_landing*M_Mars*G/(R_Mars+S_landing))/Lambda;;
-        // fuel_landing=3;
+        
+        //fuel_landing = (0,5*m_landing*(v_space*v_space) + m_landing*M_Moon*G/(R_Moon+S_landing))/Lambda;
     }
 
     S_all = (S_atmos + S_space + S_landing);
@@ -199,7 +201,7 @@ int main(void)
 
         printf("Space \n");
         printf("%f \n", S_space);
-        printf("%f \n", t_space);   // ОШИБКА
+        printf("%f \n", t_space);
         printf("%f \n\n", fuel_space);  
 
         printf("Landing \n");
@@ -237,10 +239,10 @@ int main(void)
 }
 
 
-/* ОШИБКА В ФОРМАТЕ ЧИСЕЛ  И ПЕРЕМЕННЫХ
+/*
         ПРОВЕРИТЬ, КОНЕЧНО, ФОРМУЛЫ И РАСЧЕТЫ
         ПРОСЧИТАТЬ ВСЕ НА БУМАГЕ -> ПОЛУЧИТЬ ЧИСЛА (вычисления на калькуляторе, лучше на  MAPLE), СРАВНИТЬ С ЧИСЛАМИ В ПРОГРАММЕ
-        ПОМЕНЯТЬ ТИП ПЕРЕМЕННЫХ 
+      
         СДЕЛАТЬ КОММЕНТАРИИ НА АНГЛИЙСКОМ
 
 
