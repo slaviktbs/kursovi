@@ -19,7 +19,7 @@ int main(void)
 {
     int first_choose, details;
 
-    float mass, M_Starship, R_Moon, R_Mars, Lambda, g, Ro, k, S, V_1, v_space, m_space, m_landing, M_Moon, M_Mars, G, S_all, S_space, S_atmos, S_landing, M_Eath, t_all, t_atmos, t_space, t_landing, t_all_min, t_all_hour, fuel_all, fuel_atmos, fuel_space, fuel_landing;
+    float mass, M_Starship, R_Moon, R_Mars, Lambda, g, Ro, k, S, V_1, v_space, m_space, m_landing, M_Moon, M_Mars, G, S_all, S_space, S_atmos, S_landing, M_Eath, t_all, t_atmos, t_space, t_landing, t_all_min, t_all_hour, fuel_all, fuel_atmos, fuel_space, fuel_landing, *u_ATMOS, *u_SPACE, *u_LANDING;
     const float R_Eath = 6378000;;
 
     float ATPOSPHERE[3];
@@ -48,7 +48,7 @@ int main(void)
     Lambda = 50200000;
   //G = 6.67430*10^-11;
   //G = 0.0000000000667430  
-    G = 6.6743E-11;
+    G = 6.6743E-11;   // !! CAN CHANGE VALUE !!
     g = 98E-1;
  // M_Eath = 5.9722*10^24;
     M_Eath = 59722*10^20;
@@ -141,6 +141,10 @@ int main(void)
     LANDING[1] = t_landing;
     LANDING[2] = fuel_landing;
 
+    u_ATMOS = ATPOSPHERE;
+    u_SPACE = SPACE;
+    u_LANDING = LANDING;
+
     S_all = (S_atmos + S_space + S_landing);
 
     t_all = t_atmos + t_space + t_landing;
@@ -167,28 +171,40 @@ int main(void)
 
     if (details == 1)
     {
-
+/*
         printf("%f \n\n", ATPOSPHERE[0]);
         printf("%f \n\n", ATPOSPHERE[1]);
         printf("%f \n\n", ATPOSPHERE[2]);
+*/
+        printf("\t %f \n\n", *u_ATMOS);
+        printf("\t %f \n\n", *(u_ATMOS+1));
+        printf("\t %f \n\n", *(u_ATMOS+2));
 
         printf("Atmosphere \n");
         printf("%f \n", S_atmos);
         printf("%f \n", t_atmos);
         printf("%f \n\n", fuel_atmos);
-
+/*        
         printf("%f \n\n", SPACE[0]);
         printf("%f \n\n", SPACE[1]);
         printf("%f \n\n", SPACE[2]);
+*/      
+        printf("\t %f \n\n", *u_SPACE);
+        printf("\t %f \n\n", *(u_SPACE+1));
+        printf("\t %f \n\n", *(u_SPACE+2));
 
         printf("Space \n");
         printf("%f \n", S_space);
         printf("%f \n", t_space);
         printf("%f \n\n", fuel_space);  
-
+/*
          printf("%f \n\n", LANDING[0]);
         printf("%f \n\n", LANDING[1]);
         printf("%f \n\n", LANDING[2]);
+*/
+        printf("\t %f \n\n", *u_LANDING);
+        printf("\t %f \n\n", *(u_LANDING+1));
+        printf("\t %f \n\n", *(u_LANDING+2));
 
         printf("Landing \n");
         printf("%f \n", S_landing);
