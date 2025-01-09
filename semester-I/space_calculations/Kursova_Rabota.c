@@ -19,12 +19,13 @@ int main(void)
 {
     int first_choose, details;
 
-    float mass, M_Starship, R_Moon, R_Mars, Lambda, g, Ro, k, S, V_1, v_space, m_space, m_landing, M_Moon, M_Mars, G, S_all, S_space, S_atmos, S_landing, M_Eath, t_all, t_atmos, t_space, t_landing, t_all_min, t_all_hour, fuel_all, fuel_atmos, fuel_space, fuel_landing, *u_ATMOS, *u_SPACE, *u_LANDING;
+    float mass, M_Starship, R_Moon, R_Mars, Lambda, g, Ro, k, S, V_1, v_space, m_space, m_landing, M_Moon, M_Mars, G, S_all, S_space, S_atmos, S_landing, M_Eath, t_all, t_atmos, t_space, t_landing, t_all_min, t_all_hour, fuel_all, fuel_atmos, fuel_space, fuel_landing, *u_ATMOS, *u_SPACE, *u_LANDING, *u_ALL;
     const float R_Eath = 6378000;;
 
     float ATPOSPHERE[3];
     float LANDING[3];
     float SPACE[3];
+    float ALL[3];
 
     printf ("Welcome to interplanetary travel ! \n\n");
 
@@ -49,16 +50,19 @@ int main(void)
   //G = 6.67430*10^-11;
   //G = 0.0000000000667430  
     G = 6.6743E-11;   // !! CAN CHANGE VALUE !!
+ // G = 66743*0.0001;
+ // G = 66743*10^-15;
     g = 98E-1;
- // M_Eath = 5.9722*10^24;
     M_Eath = 59722*10^20;
     M_Moon = 7.35E22;
-    M_Mars = 6.417E23;
-    Ro = 1.2754;  // плотность воздуха
+  //M_Mars = 6.417E23;
+    M_Mars = 6417*10^20;
+//  Ro = 1.2754;  // плотность воздуха
+    Ro = 12754*0.0001;
     k = 0.5;  // Коэфициент сопротивления формы грубо
     S = 3; //площадь поперечного сечения !! очень грубо пока !!!
-    v_space = 1444.44;  // Скоростта на ракета в космоса
-
+ // v_space = 1444.44;  // Скоростта на ракета в космоса
+    v_space = 144444*0.01;
 // Пресмятане на първата част от пътя: атмосферата
 
     if (first_choose == 1)  // Потребителя е избрал за дестинация Луната
@@ -123,7 +127,7 @@ int main(void)
 
         m_landing = mass_func(M_Starship, mass) - fuel_space;
 
-        fuel_landing = ((m_landing*M_Moon*G)/R_Moon - 0,5*m_landing*(v_space*v_space) + m_landing*M_Moon*G/(R_Moon+S_landing))/Lambda;
+        fuel_landing = ((m_landing*M_Moon*G)/R_Moon - 0.5*m_landing*(v_space*v_space) + m_landing*M_Moon*G/(R_Moon+S_landing))/Lambda;
         
         //fuel_landing = (0,5*m_landing*(v_space*v_space) + m_landing*M_Moon*G/(R_Moon+S_landing))/Lambda;
     }
@@ -132,7 +136,7 @@ int main(void)
     {
         t_landing = (2*S_landing)/v_space;
 
-        fuel_landing = ((m_landing*M_Mars*G)/R_Mars - 0,5*m_landing*(v_space*v_space) + m_landing*M_Mars*G/(R_Mars+S_landing))/Lambda;;
+        fuel_landing = ((m_landing*M_Mars*G)/R_Mars - 0.5*m_landing*(v_space*v_space) + m_landing*M_Mars*G/(R_Mars+S_landing))/Lambda;;
         
         //fuel_landing = (0,5*m_landing*(v_space*v_space) + m_landing*M_Moon*G/(R_Moon+S_landing))/Lambda;
     }
@@ -141,96 +145,48 @@ int main(void)
     LANDING[1] = t_landing;
     LANDING[2] = fuel_landing;
 
+    
+    S_all = S_atmos + S_space + S_landing;
+    t_all = t_atmos + t_space + t_landing;
+    fuel_all = fuel_atmos + fuel_space + fuel_landing;
+
+    ALL[0] = S_all;
+    ALL[1] = t_all;
+    ALL[2] = fuel_all;
+
     u_ATMOS = ATPOSPHERE;
     u_SPACE = SPACE;
     u_LANDING = LANDING;
+    u_ALL = ALL;
 
-    S_all = (S_atmos + S_space + S_landing);
 
-    t_all = t_atmos + t_space + t_landing;
+    printf ("\n\n \t The total distance of the flight is: %f  meters \n", *u_ALL);
+    
+    printf ("\t The total time of the flight is: %f seconds\n", *(u_ALL+1));
 
-    fuel_all = fuel_atmos + fuel_space + fuel_landing;
+    printf ("\t The fuel consumption of the flight is: %f  kilograms of liquid methane \n", *(u_ALL+2));
 
-/*
-    printf("%f", fuel_landing);
-    printf ("\n\n \t The total distance of the flight is: %f  kilometers \n", S_all);
-
- //   printf ("t_all = %f \n", t_all);
-
-  //printf ("\t The total time of the flight is: %u  hours   %f  minutes \n", t_all_hour, t_all_min);
-
-    printf ("\t The fuel consumption of the flight is: %f  kilograms of liquid methane \n", fuel_all);
-
-    printf ("atmos: %f \n", t_atmos);
-    printf ("space: %f \n", t_space);
-    printf ("landing: %f \n", t_landing);
-*/
     printf("\nIf you want to see a details, press 1 \n");
     printf("If you don't want to, press 2 \n");
     scanf ("%d", &details);
 
     if (details == 1)
     {
-/*
-        printf("%f \n\n", ATPOSPHERE[0]);
-        printf("%f \n\n", ATPOSPHERE[1]);
-        printf("%f \n\n", ATPOSPHERE[2]);
-*/
-        printf("\t %f \n\n", *u_ATMOS);
-        printf("\t %f \n\n", *(u_ATMOS+1));
-        printf("\t %f \n\n", *(u_ATMOS+2));
 
-        printf("Atmosphere \n");
-        printf("%f \n", S_atmos);
-        printf("%f \n", t_atmos);
-        printf("%f \n\n", fuel_atmos);
-/*        
-        printf("%f \n\n", SPACE[0]);
-        printf("%f \n\n", SPACE[1]);
-        printf("%f \n\n", SPACE[2]);
-*/      
-        printf("\t %f \n\n", *u_SPACE);
-        printf("\t %f \n\n", *(u_SPACE+1));
-        printf("\t %f \n\n", *(u_SPACE+2));
+// Лучше сделать указател като параметр на функция, преподу такое нравиться !!
 
-        printf("Space \n");
-        printf("%f \n", S_space);
-        printf("%f \n", t_space);
-        printf("%f \n\n", fuel_space);  
-/*
-         printf("%f \n\n", LANDING[0]);
-        printf("%f \n\n", LANDING[1]);
-        printf("%f \n\n", LANDING[2]);
-*/
-        printf("\t %f \n\n", *u_LANDING);
-        printf("\t %f \n\n", *(u_LANDING+1));
-        printf("\t %f \n\n", *(u_LANDING+2));
-
-        printf("Landing \n");
-        printf("%f \n", S_landing);
-        printf("%f \n", t_landing);
-        printf("%f \n\n", fuel_landing);
-
-        /*
-        printf ("\n\n The journey is divided into 3 parts: atmosphere, space and landing \n\n ");
+        printf ("\n\tThe journey is divided into 3 parts: atmosphere, space and landing \n ");
 
         printf("About atmosphere : \n");
-        printf ("\t The distance of the flight in atmosphere is: %f /n/n/r");
 
-        //printf ("\t The distance of the flight in atmosphere is: %f meters \n \t The time of the flight in atmosphere is: %f seconds \n \t The fuel consumption per atmosphere is: %f kilograms \n", ATPOSPHERE[0], ATPOSPHERE[1], ATPOSPHERE[2]);
+        printf ("\t The distance of the flight is: %f meters \n \t The time of the flight is: %f seconds \n \t The fuel consumption is: %f kilograms \n", *u_ATMOS, *(u_ATMOS+1), *(u_ATMOS+2));
 
         printf("About space : \n");
-        printf ("\t The distance of the flight in space is: %f meters \n, \t The time of the flight in space is: %f seconds \n, \t The fuel consumption per space is: %f kilograms \n\n", SPACE[0], SPACE[1], SPACE[2]);
-
-
-        /*
-        printf ("\t The time of the flight in space is: %u seconds \n", t_space);
-        printf ("\t The fuel consumption per space is: %u kilograms \n", fuel_space);
+        printf ("\t The distance of the flight is: %f meters \n \t The time of the flight is: %f seconds \n \t The fuel consumption is: %f kilograms \n", *u_SPACE, *(u_SPACE+1), *(u_SPACE+2));
 
         printf("About landing : \n");
-        printf ("\t The time of the flight in landing is: %u seconds \n", t_landing);
-        printf ("\t The fuel consumption per landing is: %u kilograms \n", fuel_landing);
-*/
+        printf ("\t The distance of the flight is: %f meters \n \t The time of the flight is: %f seconds \n \t The fuel consumption is: %f kilograms \n", *u_LANDING, *(u_LANDING+1), *(u_LANDING+2));
+
     }
     else if (details == 2)
     {
@@ -243,7 +199,6 @@ int main(void)
 
 /*
 
-
     Добавить СТЕПЕНЬ для скоростей (для math.h)
 
 
@@ -255,30 +210,7 @@ int main(void)
 
 
 
-    total time - примерно 36 дней, что очень много -->> проверить time_... 
-        ДОЛЖНО БЫТЬ ПРИМЕРНО 3 ДНЯ ! (примерно 290 000 секунд)
-    Также лучше выдавать время в ч и мин, что удобнее -->> изменить немного код...
-
-    total fuel - 562 млн тонн, что очень много -->> проверить fuel_...
     
-
-    total time и total fuel неправильны не из-за неправильных рассчетов по физике,
-    а из-за неправильных типов переменных "can change value" !!!Разобраться с типом переменных
-
-
-    то, что НУЖНО ДОДЕЛАТЬ:
-        функция 
-            m = mass+M_Starship
-        массив
-            atmosphere:
-                time
-                fuel
-                s
-            space:
-            ...
-            landing
-            ... 
-        
-
+    Также лучше выдавать время в ч и мин, что удобнее -->> изменить немного код...
 
 */
