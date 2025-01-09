@@ -128,9 +128,9 @@ int main(void)
     {
         t_landing = (2*S_landing)/v_space;
 
-        fuel_landing = ((m_landing*M_Mars*G)/R_Mars - 0.5*m_landing*(v_space*v_space) + m_landing*M_Mars*G/(R_Mars+S_landing))/Lambda;;
+    //  fuel_landing = ((m_landing*M_Mars*G)/R_Mars - 0.5*m_landing*(v_space*v_space) + m_landing*M_Mars*G/(R_Mars+S_landing))/Lambda;;
         
-        //fuel_landing = (0,5*m_landing*(v_space*v_space) + m_landing*M_Moon*G/(R_Moon+S_landing))/Lambda;
+        fuel_landing = (0,5*m_landing*(v_space*v_space) + m_landing*M_Moon*G/(R_Moon+S_landing))/Lambda;
     }
 
     LANDING[0] = S_landing;
@@ -165,7 +165,7 @@ int main(void)
 
 // Лучше сделать указател като параметр на функция, преподу такое нравиться !!
 
-        printf ("\n\tThe journey is divided into 3 parts: atmosphere, space and landing \n ");
+        printf ("\nThe journey is divided into 3 parts: atmosphere, space and landing \n\n");
 
         printf("About atmosphere : \n");
 
