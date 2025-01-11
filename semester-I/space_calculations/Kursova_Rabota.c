@@ -223,13 +223,13 @@ int main(void)
 
   fprintf(file, "Here are your flight details:\n");
   fprintf(file, "|----------------------------------------------------------|\n");
-  fprintf(file, "| Destination | Stage of the trip | Distance | Time | Fuel |\n");
+  fprintf(file, "| Destination | Mass   |Stage of the trip | Distance | Time | Fuel |\n");
   fprintf(file, "|----------------------------------------------------------|\n");
 
   if (first_choose == 1){fprintf(file, "|Moon");}
   else if (first_choose == 2){fprintf(file, "|Mars");}  
   
-  fprintf(file, "    |  Atmosphere   |   %f  |  %f   |   %f   |\n", S_atmos, t_atmos, fuel_atmos);
+  fprintf(file, "    | %f  |   Atmosphere   |  %f   |   %f   |   %f   |\n", mass, S_atmos, t_atmos, fuel_atmos);
 
   fclose(file);
   

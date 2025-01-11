@@ -2,6 +2,6 @@ Hello, traveler,
 You just flew to the Moon
 Here are your flight details:
 |----------------------------------------------------------|
-| Destination | Stage of the trip | Distance | Time | Fuel |
+| Destination | Mass   |Stage of the trip | Distance | Time | Fuel |
 |----------------------------------------------------------|
-|Moon    |  Atmosphere   |   150000.000000  |  37.926674   |   2308856.500000   |
+|Moon    | 89.000000  |   Atmosphere   |  150000.000000   |   37.926674   |   2308899.500000   |
