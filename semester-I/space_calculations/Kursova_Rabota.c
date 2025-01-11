@@ -15,11 +15,17 @@ float mass_func (float M_Starship, float mass)
         return M_Starship + mass;
     }
 
+union Union_ALL
+  {
+    float y;
+  };
+
 int main(void)
 {
+    union Union_ALL union_pointer;
     int first_choose, details;
 
-    float mass, M_Starship, R_Moon, R_Mars, Lambda, g, Ro, k, S, V_1, v_space, m_space, m_landing, M_Moon, M_Mars, G, S_all, S_space, S_atmos, S_landing, M_Eath, t_all, t_atmos, t_space, t_landing, t_all_min, t_all_hour, fuel_all, fuel_atmos, fuel_space, fuel_landing, *u_ATMOS, *u_SPACE, *u_LANDING, *u_ALL;
+    float mass, y, M_Starship, R_Moon, R_Mars, Lambda, g, Ro, k, S, V_1, v_space, m_space, m_landing, M_Moon, M_Mars, G, S_all, S_space, S_atmos, S_landing, M_Eath, t_all, t_atmos, t_space, t_landing, t_all_min, t_all_hour, fuel_all, fuel_atmos, fuel_space, fuel_landing, *u_ATMOS, *u_SPACE, *u_LANDING, *u_ALL;
     const float R_Eath = 6378000;;
 
     float ATPOSPHERE[3];
@@ -32,14 +38,19 @@ int main(void)
     printf ("Choose the destination: \n");
     printf ("\t 1 - Moon \n");
     printf ("\t 2 - Mars \n\n");
-    printf ("To chouse press 1 or 2 \n");
-    scanf ("%d", &first_choose);
+    for (int i=0; i<=2; i++)
+   {
+      
+      printf ("To chouse press 1 or 2 \n");
+      scanf ("%d", &first_choose);
+      if (first_choose != 0){i++;}
 
+      printf ("\nEnter the mass of the product you want to send on the destination (in kg): \n");
+      scanf ("%f", &mass);
+      if (mass != 0){i++;}
+   }
 
-    printf ("\nEnter the mass of the product you want to send on the destination (in kg): \n");
-    scanf ("%f", &mass);
-
-
+    y = 0;
     S_atmos = 150000;
     S_landing = 40000;
     R_Moon = 1737000;
@@ -133,7 +144,8 @@ int main(void)
 
     //  fuel_landing = ((m_landing*M_Mars*G)/R_Mars - 0.5*m_landing*(v_space*v_space) + m_landing*M_Mars*G/(R_Mars+S_landing))/Lambda;;
         
-        fuel_landing = (0,5*m_landing*(v_space*v_space) + m_landing*M_Moon*G/(R_Moon+S_landing))/Lambda;
+    //  fuel_landing = (0,5*m_landing*(v_space*v_space) + m_landing*M_Moon*G/(R_Moon+S_landing))/Lambda;
+        fuel_landing = 5;
     }
 
     LANDING[0] = S_landing;
@@ -148,12 +160,30 @@ int main(void)
     ALL[1] = t_all;
     ALL[2] = fuel_all;
 
+
+  for (int i=0; i<=2; i++)
+  {
+    if (i==0){
+      union_pointer.y = S_all;
+      printf("\n\t The total distance of the flight is: %f  meters \n",union_pointer.y);
+    }
+
+    else if (i==1){
+      union_pointer.y = t_all;
+      printf("\t The total time of the flight is: %f seconds\n",union_pointer.y);
+    }
+    else if (i==2){
+      union_pointer.y  = fuel_all;
+      printf("\t The fuel consumption of the flight is: %f  kilograms of liquid methane \n",union_pointer.y);
+    }
+  }  
+
     u_ATMOS = ATPOSPHERE;
     u_SPACE = SPACE;
     u_LANDING = LANDING;
     u_ALL = ALL;
 
-    printf ("\n\n \t The total distance of the flight is: %f  meters \n", *u_ALL);
+    printf ("\n\t The total distance of the flight is: %f  meters \n", *u_ALL);
     
     printf ("\t The total time of the flight is: %f seconds\n", *(u_ALL+1));
 
