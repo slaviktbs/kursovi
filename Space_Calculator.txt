@@ -1,0 +1,6 @@
+Hello, traveler,
+You just flew to the Moon
+Here are your flight details:
+	 The total distance of the flight is: 1.000000  meters 
+	 The total time of the flight is: 2.000000 seconds
+	 The fuel consumption of the flight is: 3.000000  kilograms of liquid methane 

@@ -38,18 +38,13 @@ int main(void)
     printf ("Choose the destination: \n");
     printf ("\t 1 - Moon \n");
     printf ("\t 2 - Mars \n\n");
-    for (int i=0; i<=2; i++)
-   {
-      
-      printf ("To chouse press 1 or 2 \n");
-      scanf ("%d", &first_choose);
-      if (first_choose != 0){i++;}
 
-      printf ("\nEnter the mass of the product you want to send on the destination (in kg): \n");
-      scanf ("%f", &mass);
-      if (mass != 0){i++;}
-   }
+    printf ("To chouse press 1 or 2 \n");
+    scanf ("%d", &first_choose);
 
+    printf ("\nEnter the mass of the product you want to send on the destination (in kg): \n");
+    scanf ("%f", &mass);
+    
     y = 0;
     S_atmos = 150000;
     S_landing = 40000;
@@ -182,12 +177,6 @@ int main(void)
     u_SPACE = SPACE;
     u_LANDING = LANDING;
     u_ALL = ALL;
-
-    printf ("\n\t The total distance of the flight is: %f  meters \n", *u_ALL);
-    
-    printf ("\t The total time of the flight is: %f seconds\n", *(u_ALL+1));
-
-    printf ("\t The fuel consumption of the flight is: %f  kilograms of liquid methane \n", *(u_ALL+2));
 
     printf("\nIf you want to see a details, press 1 \n");
     printf("If you don't want to, press 2 \n");

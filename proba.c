@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<math.h>
+#include<stdlib.h>
 
 
 union Union_ALL
@@ -7,9 +8,11 @@ union Union_ALL
     float y;
   };
 
+
 int main() 
 {
   float S_all, t_all, fuel_all, y;
+  int first_choose;
   union Union_ALL union_pointer;
 
   S_all = 1.00;
@@ -17,6 +20,8 @@ int main()
   fuel_all = 3.00;
   y = 0.00;
 
+
+  FILE *file = fopen("Space_Calculator.txt", "w");
 
   for (int i=0; i<=2; i++)
   {
@@ -31,10 +36,35 @@ int main()
     }
     else if (i==2){
       union_pointer.y  = fuel_all;
-      printf(" fuel = %f\n",union_pointer.y);
+      printf(" fuel = %f\n\n",union_pointer.y);
     }
-  }  
-return 0;
+  }
+
+  if (file == NULL)
+  {
+    printf("Error opening file!\n");
+    return 1; // Exit the program with an error code
+  }
+
+
+  printf("Enter your choise: ", &first_choose);
+  scanf("%d", &first_choose);
+  fprintf(file, "Hello, traveler,\nYou just flew to the ");
+
+  if (first_choose == 1){fprintf(file, "Moon\n");}
+  else if (first_choose == 2){fprintf(file, "Mars\n");}
+
+  fprintf(file, "Here are your flight details:");
+  fprintf(file, "\n\t The total distance of the flight is: %f  meters \n", S_all);
+  fprintf(file, "\t The total time of the flight is: %f seconds\n", t_all);
+  fprintf(file, "\t The fuel consumption of the flight is: %f  kilograms of liquid methane \n", fuel_all);
+
+  fclose(file);
+
+
+  system("msg * Hello, this is a popup!");
+
+  return 0;
 }
 
   // union_pointer.S = S_all;
