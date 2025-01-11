@@ -9,6 +9,7 @@
 #include "math.h"
 */
 #include <math.h>
+#include<stdlib.h>
 
 float mass_func (float M_Starship, float mass)
     {
@@ -22,6 +23,9 @@ union Union_ALL
 
 int main(void)
 {
+
+    FILE *file = fopen("Space_Calculator.txt", "w");
+  
     union Union_ALL union_pointer;
     int first_choose, details;
 
@@ -205,23 +209,30 @@ int main(void)
         printf ("\nBye bue \n\n");
     }
 
+
+  if (file == NULL)
+  {
+    printf("Error opening file!\n");
+    return 1; // Exit the program with an error code
+  }
+
+  fprintf(file, "Hello, traveler,\nYou just flew to the ");
+
+  if (first_choose == 1){fprintf(file, "Moon\n");}
+  else if (first_choose == 2){fprintf(file, "Mars\n");}
+
+  fprintf(file, "Here are your flight details:\n");
+  fprintf(file, "|----------------------------------------------------------|\n");
+  fprintf(file, "| Destination | Stage of the trip | Distance | Time | Fuel |\n");
+  fprintf(file, "|----------------------------------------------------------|\n");
+
+  if (first_choose == 1){fprintf(file, "|Moon");}
+  else if (first_choose == 2){fprintf(file, "|Mars");}  
+  
+  fprintf(file, "    |  Atmosphere   |   %f  |  %f   |   %f   |\n", S_atmos, t_atmos, fuel_atmos);
+
+  fclose(file);
+  
+
     return 0;
 }
-
-/*
-
-    Добавить СТЕПЕНЬ для скоростей (для math.h)
-
-
-
-        ПРОВЕРИТЬ, КОНЕЧНО, ФОРМУЛЫ И РАСЧЕТЫ
-        ПРОСЧИТАТЬ ВСЕ НА БУМАГЕ -> ПОЛУЧИТЬ ЧИСЛА (вычисления на калькуляторе, лучше на  MAPLE), СРАВНИТЬ С ЧИСЛАМИ В ПРОГРАММЕ
-      
-        СДЕЛАТЬ КОММЕНТАРИИ НА АНГЛИЙСКОМ
-
-
-
-    
-    Также лучше выдавать время в ч и мин, что удобнее -->> изменить немного код...
-
-*/

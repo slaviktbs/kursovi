@@ -1,7 +1,7 @@
 Hello, traveler,
-You just flew to the Mars
+You just flew to the Moon
 Here are your flight details:
 |----------------------------------------------------------|
 | Destination | Stage of the trip | Distance | Time | Fuel |
 |----------------------------------------------------------|
-|Mars   |  Atmosphere   |   1.000000  |
+|Moon    |  Atmosphere   |   150000.000000  |  37.926674   |   2308856.500000   |

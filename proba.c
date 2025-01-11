@@ -21,7 +21,6 @@ int main()
   y = 0.00;
 
 
-  FILE *file = fopen("Space_Calculator.txt", "w");
 
   for (int i=0; i<=2; i++)
   {
@@ -40,6 +39,9 @@ int main()
     }
   }
 
+
+
+  FILE *file = fopen("space_calculator.txt", "w");
   if (file == NULL)
   {
     printf("Error opening file!\n");
@@ -47,22 +49,26 @@ int main()
   }
 
 
-  printf("Enter your choise: ", &first_choose);
+  printf("Enter your choise: ");
   scanf("%d", &first_choose);
   fprintf(file, "Hello, traveler,\nYou just flew to the ");
 
   if (first_choose == 1){fprintf(file, "Moon\n");}
   else if (first_choose == 2){fprintf(file, "Mars\n");}
 
-  fprintf(file, "Here are your flight details:");
-  fprintf(file, "\n\t The total distance of the flight is: %f  meters \n", S_all);
-  fprintf(file, "\t The total time of the flight is: %f seconds\n", t_all);
-  fprintf(file, "\t The fuel consumption of the flight is: %f  kilograms of liquid methane \n", fuel_all);
+  fprintf(file, "Here are your flight details:\n");
+  fprintf(file, "|----------------------------------------------------------|\n");
+  fprintf(file, "| Destination | Stage of the trip | Distance | Time | Fuel |\n");
+  fprintf(file, "|----------------------------------------------------------|\n");\
+
+  if (first_choose == 1){fprintf(file, "|Moon");}
+  else if (first_choose == 2){fprintf(file, "|Mars");}  
+  
+  fprintf(file, "   |  Atmosphere   |   %f  |", S_all);
 
   fclose(file);
 
 
-  system("msg * Hello, this is a popup!");
 
   return 0;
 }
