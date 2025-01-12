@@ -222,14 +222,21 @@ int main(void)
   else if (first_choose == 2){fprintf(file, "Mars\n");}
 
   fprintf(file, "Here are your flight details:\n");
-  fprintf(file, "|----------------------------------------------------------|\n");
-  fprintf(file, "| Destination | Mass   |Stage of the trip | Distance | Time | Fuel |\n");
-  fprintf(file, "|----------------------------------------------------------|\n");
+  fprintf(file, "|---------------------------------------------------------------------------------------------------------------------------|\n");
+  fprintf(file, "|\t Destination \t|\t Mass \t\t|\t Stage of the trip \t|\t Distance \t\t\t|\t Time \t\t\t|\t Fuel \t\t\t|\n");
+  fprintf(file, "|---------------------------------------------------------------------------------------------------------------------------|\n");
 
-  if (first_choose == 1){fprintf(file, "|Moon");}
-  else if (first_choose == 2){fprintf(file, "|Mars");}  
+  if (first_choose == 1){fprintf(file, "|\t Moon \t");}
+  else if (first_choose == 2){fprintf(file, "|\t Mars \t");}  
   
-  fprintf(file, "    | %f  |   Atmosphere   |  %f   |   %f   |   %f   |\n", mass, S_atmos, t_atmos, fuel_atmos);
+  fprintf(file, "\t    |\t%f\t|\t Atmosphere \t\t|\t %f  \t|\t %f  \t|\t%f \t|\n", mass, S_atmos, t_atmos, fuel_atmos);
+  fprintf(file, "|---------------------------------------------------------------------------------------------------------------------------|\n");
+  fprintf(file, "|      \t\t \t    |    \t \t    |      Space      \t \t|  %f\t| %f  |  %f  \t|\n", S_space, t_space, fuel_space);
+  fprintf(file, "|---------------------------------------------------------------------------------------------------------------------------|\n");
+  fprintf(file, "|      \t\t \t    |    \t \t    |      Landing      \t|  %f\t\t\t|\t %f  \t|  %f  \t|\n", S_landing, t_landing, fuel_landing);
+  fprintf(file, "|---------------------------------------------------------------------------------------------------------------------------|\n");
+  fprintf(file, "|      \t\t \t    |    \t \t    |      Total      \t |  %f   |   %f   |   %f    |\n", S_all, t_all, fuel_all);
+  fprintf(file, "|---------------------------------------------------------------------------------------------------------------------------|\n");
 
   fclose(file);
   
