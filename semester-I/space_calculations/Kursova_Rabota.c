@@ -5,9 +5,12 @@
 */
 
 #include <stdio.h>
-/*#include "stdafx.h"
+
+/*
+#include "stdafx.h"
 #include "math.h"
 */
+
 #include <math.h>
 #include<stdlib.h>
 
@@ -28,7 +31,6 @@ int main(void)
   
     union Union_ALL union_pointer;
     int first_choose, details;
-
     float mass, y, M_Starship, R_Moon, R_Mars, Lambda, g, Ro, k, S, V_1, v_space, m_space, m_landing, M_Moon, M_Mars, G, S_all, S_space, S_atmos, S_landing, M_Eath, t_all, t_atmos, t_space, t_landing, t_all_min, t_all_hour, fuel_all, fuel_atmos, fuel_space, fuel_landing, *u_ATMOS, *u_SPACE, *u_LANDING, *u_ALL;
     const float R_Eath = 6378000;;
 
@@ -57,22 +59,15 @@ int main(void)
     M_Starship = 4000000;
     V_1 = 7910;
     Lambda = 50200000;
-  //G = 6.67430*10^-11;
-  //G = 0.0000000000667430  
-    G = 6.6743E-11;   // !! CAN CHANGE VALUE !!
- // G = 66743*0.0001;
- // G = 66743*10^-15;
+    G = 6.6743E-11;
     g = 98E-1;
     M_Eath = 59722*10^20;
     M_Moon = 7.35E22;
-  //M_Mars = 6.417E23;
     M_Mars = 6417*10^20;
-//  Ro = 1.2754;  // плотность воздуха
-    Ro = 12754*0.0001;
-    k = 0.5;  // Коэфициент сопротивления формы грубо
-    S = 3; //площадь поперечного сечения !! очень грубо пока !!!
- // v_space = 1444.44;  // Скоростта на ракета в космоса
-    v_space = 144444*0.01;
+    Ro = 12754*0.0001;  // air density
+    k = 0.5;  // Form drag coefficient
+    S = 3; //cross-sectional area
+    v_space = 144444*0.01; // The speed of a rocket in space
 
 
 // Calculating the first part of the trip: the atmosphere
@@ -123,7 +118,6 @@ int main(void)
     SPACE[1] = t_space;
     SPACE[2] = fuel_space;
 
-
 // Calculating the third part of the trip: space, near the second planet so that the rocket must slow down to stop
 
     if (first_choose == 1)
@@ -133,18 +127,15 @@ int main(void)
         m_landing = mass_func(M_Starship, mass) - fuel_space;
 
         fuel_landing = ((m_landing*M_Moon*G)/R_Moon - 0.5*m_landing*(v_space*v_space) + m_landing*M_Moon*G/(R_Moon+S_landing))/Lambda;
-        
-        //fuel_landing = (0,5*m_landing*(v_space*v_space) + m_landing*M_Moon*G/(R_Moon+S_landing))/Lambda;
     }
 
     else if (first_choose == 2)
     {
         t_landing = (2*S_landing)/v_space;
 
-    //  fuel_landing = ((m_landing*M_Mars*G)/R_Mars - 0.5*m_landing*(v_space*v_space) + m_landing*M_Mars*G/(R_Mars+S_landing))/Lambda;;
-        
-    //  fuel_landing = (0,5*m_landing*(v_space*v_space) + m_landing*M_Moon*G/(R_Moon+S_landing))/Lambda;
-        fuel_landing = 5;
+        m_landing = mass_func(M_Starship, mass) - fuel_space;
+    
+        fuel_landing = (0,5*m_landing*(v_space*v_space) + m_landing*M_Moon*G/(R_Moon+S_landing))/Lambda;
     }
 
     LANDING[0] = S_landing;
@@ -189,18 +180,16 @@ int main(void)
     if (details == 1)
     {
 
-// Лучше сделать указател като параметр на функция, преподу такое нравиться !!
-
         printf ("\nThe journey is divided into 3 parts: atmosphere, space and landing \n\n");
 
-        printf("About atmosphere : \n");
+        printf("About atmosphere: \n");
 
         printf ("\t The distance of the flight is: %f meters \n \t The time of the flight is: %f seconds \n \t The fuel consumption is: %f kilograms \n", *u_ATMOS, *(u_ATMOS+1), *(u_ATMOS+2));
 
-        printf("About space : \n");
+        printf("About space: \n");
         printf ("\t The distance of the flight is: %f meters \n \t The time of the flight is: %f seconds \n \t The fuel consumption is: %f kilograms \n", *u_SPACE, *(u_SPACE+1), *(u_SPACE+2));
 
-        printf("About landing : \n");
+        printf("About landing: \n");
         printf ("\t The distance of the flight is: %f meters \n \t The time of the flight is: %f seconds \n \t The fuel consumption is: %f kilograms \n\n", *u_LANDING, *(u_LANDING+1), *(u_LANDING+2));
 
     }
@@ -235,11 +224,10 @@ int main(void)
   fprintf(file, "|---------------------------------------------------------------------------------------------------------------------------|\n");
   fprintf(file, "|      \t\t \t    |    \t \t    |      Landing      \t|  %f\t\t\t|\t %f  \t|  %f  \t|\n", S_landing, t_landing, fuel_landing);
   fprintf(file, "|---------------------------------------------------------------------------------------------------------------------------|\n");
-  fprintf(file, "|      \t\t \t    |    \t \t    |      Total      \t |  %f   |   %f   |   %f    |\n", S_all, t_all, fuel_all);
+  fprintf(file, "|      \t\t \t    |    \t \t    |      Total      \t |  %f   |   %f   |  %f  |\n", S_all, t_all, fuel_all);
   fprintf(file, "|---------------------------------------------------------------------------------------------------------------------------|\n");
 
   fclose(file);
   
-
     return 0;
 }
