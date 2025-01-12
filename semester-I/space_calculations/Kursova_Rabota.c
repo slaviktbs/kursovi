@@ -39,9 +39,9 @@ int main(void)
     float SPACE[3];
     float ALL[3];
 
-    printf ("Welcome to interplanetary travel ! \n\n");
+    printf ("Welcome to interplanetary travel! \n\n");
 
-    printf ("Choose the destination: \n");
+    printf ("Choose the destination: \n\n");
     printf ("\t 1 - Moon \n");
     printf ("\t 2 - Mars \n\n");
 
