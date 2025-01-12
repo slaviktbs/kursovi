@@ -45,7 +45,7 @@ int main(void)
     printf ("\t 1 - Moon \n");
     printf ("\t 2 - Mars \n\n");
 
-    printf ("To chouse press 1 or 2 \n");
+    printf ("To chouse press 1 or 2: \n");
     scanf ("%d", &first_choose);
 
     printf ("\nEnter the mass of the product you want to send on the destination (in kg): \n");
