@@ -6,13 +6,8 @@
 
 #include <stdio.h>
 
-/*
-#include "stdafx.h"
-#include "math.h"
-*/
+// #include "stdafx.h"
 
-#include <math.h>
-#include<stdlib.h>
 
 float mass_func (float M_Starship, float mass)
     {
