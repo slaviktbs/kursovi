@@ -4,9 +4,9 @@
         2) mass of the payload
 */
 
-#include <stdio.h>
+//#include <stdio.h>
 
-// #include "stdafx.h"
+#include "stdafx.h"
 
 
 float mass_func (float M_Starship, float mass)
