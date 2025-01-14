@@ -2,6 +2,10 @@
     The program calculates the distance, travel time, and fuel consumption to travel from Earth to the Moon/Mars, with the SpaceX Starship rocket, using user-entered data:
         1) destination
         2) mass of the payload
+
+    Description: Simple program for calculating the basic parameters for interstellar traveling. Currently supported destinations: Moon, Mars
+    Author: Dobroslav Petrov
+    Source: https://github.com/slaviktbs/kursovi/tree/main/semester-I/space_calculations
 */
 
 //#include <stdio.h>
