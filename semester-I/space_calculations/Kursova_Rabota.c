@@ -4,7 +4,7 @@
     Source: https://github.com/slaviktbs/kursovi/tree/main/semester-I/space_calculations
 */
 
-#include "stdafx.h"
+//#include "stdafx.h"
 
 
 float mass_func (float M_Starship, float mass)
