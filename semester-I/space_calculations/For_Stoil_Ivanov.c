@@ -18,9 +18,9 @@ int main(void)
 {
     double mu, v_par, a_par, v_tr_per, v_tr_apo, v_tar, a_tar, a_tr, delta_v, delta_v_2;
 
-    mu = 398600441900000;
-    // a_par = 7000000; 
-    // a_tar = 42164000;
+    mu = 398600441999999.0;
+    // a_par = 7000 km; 
+    // a_tar = 42164 km;
 
     printf ("\tEnter the radius of the parking orbit (in km): ");    // The user enters a_par 
     scanf ("%lf", &a_par);                   
