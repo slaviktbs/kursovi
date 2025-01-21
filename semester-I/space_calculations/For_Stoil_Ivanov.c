@@ -1,6 +1,4 @@
-/*  Програмата изчислява трансфера на Хоман  (Задача 1 от трета презентация),
-    като сметките се правят в система СИ (SI)
-*/
+/*  The program calculates the Homan transfer (Problem 1 of the third presentation) with calculations made in the SI system.    */
 
 
 #include <stdio.h>
@@ -14,10 +12,10 @@ int main(void)
     // a_par = 7000000; 
     // a_tar = 42164000;
 
-    printf ("Enter the radius of the parking orbit");    // Потребителят въвежда a_par
+    printf ("Enter the radius of the parking orbit: ");    // The user enters a_par 
     scanf ("%lf", &a_par);                   
 
-    printf ("Enter the radius of the target orbit");      // Потребителят въвежда a_tar
+    printf ("Enter the radius of the target orbit: ");      // The user enters a_tar
     scanf ("%lf", &a_tar);
 
     v_par = sqrt(mu/a_par);
@@ -34,9 +32,9 @@ int main(void)
 
     delta_v_2 = v_tar - v_tr_apo;
 
-    printf ("/tdelta v1 = %lf/n", delta_v);
+    printf ("\tdelta v1 = %lf\n", delta_v);
 
-    printf ("/tdelta v2 = %lf/n", delta_v_2);
+    printf ("\tdelta v2 = %lf\n", delta_v_2);
  
     return 0;
 }
