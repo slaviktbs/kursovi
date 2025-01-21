@@ -4,6 +4,16 @@
 #include <stdio.h>
 #include <math.h>
 
+double m_func_par (double a_par)
+{
+    return a_par*1000;
+}
+
+double m_func_tar (double a_tar)
+{
+    return a_tar*1000;
+}
+
 int main(void)
 {
     double mu, v_par, a_par, v_tr_per, v_tr_apo, v_tar, a_tar, a_tr, delta_v, delta_v_2;
@@ -12,11 +22,14 @@ int main(void)
     // a_par = 7000000; 
     // a_tar = 42164000;
 
-    printf ("Enter the radius of the parking orbit: ");    // The user enters a_par 
+    printf ("\tEnter the radius of the parking orbit (in km): ");    // The user enters a_par 
     scanf ("%lf", &a_par);                   
 
-    printf ("Enter the radius of the target orbit: ");      // The user enters a_tar
+    printf ("\tEnter the radius of the target orbit (in km): ");      // The user enters a_tar
     scanf ("%lf", &a_tar);
+
+    a_par = m_func_par(a_par);
+    a_tar = m_func_tar(a_tar);
 
     v_par = sqrt(mu/a_par);
 
@@ -32,9 +45,9 @@ int main(void)
 
     delta_v_2 = v_tar - v_tr_apo;
 
-    printf ("\tdelta v1 = %lf\n", delta_v);
+    printf ("\tdelta v1 = %lf m/s\n", delta_v);
 
-    printf ("\tdelta v2 = %lf\n", delta_v_2);
+    printf ("\tdelta v2 = %lf m/s\n", delta_v_2);
  
     return 0;
 }
