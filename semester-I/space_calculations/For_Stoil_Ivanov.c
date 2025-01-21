@@ -35,19 +35,16 @@ int main(void)
 // /*
 //#include "stdafx.h"
 
-#include <stdio.h>
 #include <math.h>
+#include <stdio.h>
 
 int main(void)
 {
-    double mu, v_par, a_par, a_tar;
+    double v, s;
 
-    mu = 398600441900000.0;
-    a_par = 7000000.0;
-    a_tar = 42164000.0;
-
-    v_par = sqrt(mu/a_par);
-    printf ("%lf", v_par);
+    s = 67.0/54.0;
+    v = sqrt(s);
+    printf ("%lf", v);
  
     return 0;
 }

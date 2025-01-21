@@ -4,7 +4,8 @@
     Source: https://github.com/slaviktbs/kursovi/tree/main/semester-I/space_calculations
 */
 
-//#include "stdafx.h"
+//include "stdafx.h"
+#include<stdio.h>
 
 
 float mass_func (float M_Starship, float mass)
@@ -20,7 +21,7 @@ union Union_ALL
 int main(void)
 {
 
-    FILE *file = fopen("Space_Calculator.txt", "w");
+   FILE *file = fopen("Space_Calculator.txt", "w");
   
     union Union_ALL union_pointer;
     int first_choose, details;
@@ -191,7 +192,6 @@ int main(void)
         printf ("\nBye bue \n\n");
     }
 
-
   if (file == NULL)
   {
     printf("Error opening file!\n");
@@ -221,6 +221,6 @@ int main(void)
   fprintf(file, "|---------------------------------------------------------------------------------------------------------------------------|\n");
 
   fclose(file);
-  
     return 0;
 }
+
