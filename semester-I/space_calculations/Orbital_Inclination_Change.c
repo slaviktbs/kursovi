@@ -10,7 +10,7 @@ double m_func_par (double a)
 
 double deg_to_rad (double alpha)
 {
-    return alpha*(M_PI/180);
+    return alpha*(3.14/180);
 }
 
 int main(void)
@@ -20,12 +20,12 @@ int main(void)
     mu = 398600441999999.0;
 
     printf ("\tEnter the radius of the parking orbit (in km): ");    // The user enters a_par 
-    scanf ("%lf", &a);
+    scanf ("%lf", &a);  //7200 km
 
     a = m_func_par(a);
 
     printf ("\tEnter the angle setting the desired inclination change (in degrees): ");    // The user enters alpha
-    scanf ("%lf", &alpha);
+    scanf ("%lf", &alpha);  //30 degrees
 
     alpha = deg_to_rad(alpha);
 
