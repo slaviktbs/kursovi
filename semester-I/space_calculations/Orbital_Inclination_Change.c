@@ -15,25 +15,26 @@ double deg_to_rad (double alpha)
 
 int main(void)
 {
-    double delta_v_norm, delta_v_neg, delta_V, V, v_orig, alpha, a, mu;
+    double delta_v_norm, delta_v_neg, delta_V, v_orig, alpha, a, mu;
 
     mu = 398600441999999.0;
+    // a = 7200 km;
+    // alpha = 30 degrees;
 
     printf ("\tEnter the radius of the parking orbit (in km): ");    // The user enters a_par 
-    scanf ("%lf", &a);  //7200 km
-
-    a = m_func_par(a);
+    scanf ("%lf", &a);
 
     printf ("\tEnter the angle setting the desired inclination change (in degrees): ");    // The user enters alpha
-    scanf ("%lf", &alpha);  //30 degrees
+    scanf ("%lf", &alpha);
 
+    a = m_func_par(a);
     alpha = deg_to_rad(alpha);
 
-    V = sqrt(mu/a);  // да реша със VisViva
+    v_orig = sqrt(mu/a);
 
     delta_v_norm = v_orig*sin(alpha);
 
-    delta_v_neg = (-1.0)*v_orig*(1-cos(alpha));
+    delta_v_neg = v_orig*(cos(alpha)-1);
 
     delta_V = sqrt(delta_v_norm*delta_v_norm + delta_v_neg*delta_v_neg);
 
