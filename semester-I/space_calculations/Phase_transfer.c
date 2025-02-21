@@ -9,10 +9,16 @@ double m_func_orig (double a_orig)
     return a_orig*1000;
 }
 
+double m_func_phi (double pli)
+{
+    return pli*60;
+}
+
+
 int main(void)
 {
-    double mu, delta_v_1, delta_v_2, phi, T, a_orig, a_ph, t_ph, T_ph, v_orig, v_ph_apo, e;
-    int n;
+    double mu, delta_v_1, delta_v_2, phi, T, a_orig, a_ph, t_ph, T_ph, v_orig, v_ph_apo, v_ph_per, e;
+    int n, choise;
 
     mu = 398600441999999.0;
     e = 0.00001;
@@ -26,11 +32,27 @@ int main(void)
     printf ("\tNumber of periods in phase orbit before returning to the initial orbit: ");    // The user enters n
     scanf ("%d", &n);
 
-    phi = 25.0-77.0;    // The phase transfer angle is -52 degrees
+    printf ("\tPhase difference of the two satellites (in minutes): ");   // The phase transfer 
+    scanf ("%lf", &t_ph);
+
+    phi = m_func_phi(phi);   
+
+    printf("\tDepending on whether the goal should be reached or waited for, enter the relevant data: \n");
+    printf("\t\t1 - for the goal to be reached \n");
+    printf("\t\t2 - for the goal to be waited for \n\t");
+    scanf("%d", &choise);
+
+    if(choise == 1)  //reached
+    {
+        t_ph = (-1.0)*t_ph;
+    }
+
+    if(choise == 2)  //waiting
+    {
+        t_ph = t_ph;
+    }
 
     T = 2*M_PI*sqrt(pow(a_orig,3)/mu);    // The period of the parking orbits
-
-    t_ph = phi*T/360;    // The time of the phase transfer
 
     T_ph = T+t_ph/n;    // The period of the phase orbit
 
@@ -38,15 +60,27 @@ int main(void)
 
     v_orig = sqrt(mu/a_orig);
 
-    v_ph_apo = sqrt(mu*(2/(a_ph*(1+e))-1/a_ph));   // ДА добавя delta T: разлика във време между двата обекта!!
+    if(choise==1)
+    {
+        v_ph_apo = sqrt(mu*(2/(a_ph*(1+e))-1/a_ph));   
     
-    delta_v_1 = v_ph_apo - v_orig;
+        delta_v_1 = v_ph_apo - v_orig;
     
-    delta_v_2 = (-1.0)*delta_v_1;
+        delta_v_2 = (-1.0)*delta_v_1;
+    }
+    else if(choise==2)
+    {
+        v_ph_per = sqrt(mu*(2/(a_ph*(1-e))-1/a_ph));
+
+        delta_v_1 = v_ph_per - v_orig;
+
+        delta_v_2 = (-1.0)*delta_v_1;   //НЕ работает как должно, в зависимости от waiting или reached должны быть дельты противоположны по знаку !!!
+        
+    }
 
     printf ("\tdelta v1 = %lf m/s\n", delta_v_1);
 
-    printf ("\tdelta v2 = %lf m/s\n", delta_v_2);
+    printf ("\tdelta v2 = %lf m/s\n", delta_v_2);   
 
     return 0;
 }
