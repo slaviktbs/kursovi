@@ -38,7 +38,7 @@ int main(void)
 
     v_orig = sqrt(mu/a_orig);
 
-    v_ph_apo = sqrt(mu*(2/(a_ph*(1+e))-1/a_ph));
+    v_ph_apo = sqrt(mu*(2/(a_ph*(1+e))-1/a_ph));   // ДА добавя delta T: разлика във време между двата обекта!!
     
     delta_v_1 = v_ph_apo - v_orig;
     

@@ -55,7 +55,7 @@ int main(void)
 
     v_tar = sqrt(mu/a_tar);
 
-    delta_v_3 = v_tr_per_2 - v_tar;
+    delta_v_3 = v_tar - v_tr_per_2;
 
     printf ("\tdelta v1 = %lf m/s\n", delta_v_1);
 
