@@ -43,12 +43,12 @@ int main(void)
 
     if(choise == 1)  //reached
     {
-        t_ph = (-1.0)*t_ph;
+        t_ph = t_ph;
     }
 
     if(choise == 2)  //waiting
     {
-        t_ph = t_ph;
+        t_ph = (-1.0)*t_ph;
     }
 
     T = 2*M_PI*sqrt(pow(a_orig,3)/mu);    // The period of the parking orbits
