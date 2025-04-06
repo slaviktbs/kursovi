@@ -1,0 +1,35 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "semester-I", "semester-I", "{67A1D3E5-10C8-42FD-E326-59AE347F861F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "space_calculations", "space_calculations", "{1CD76B78-4472-F3CD-0F2B-7A23B9A8B7D5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MyAspNetApp", "MyAspNetApp", "{E8AF5BCB-6607-D913-449F-7902CD2E54C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyAspNetApp", "semester-I\space_calculations\MyAspNetApp\MyAspNetApp\MyAspNetApp.csproj", "{7F454F57-5766-9CFC-544E-EF5B2781EA4A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7F454F57-5766-9CFC-544E-EF5B2781EA4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F454F57-5766-9CFC-544E-EF5B2781EA4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F454F57-5766-9CFC-544E-EF5B2781EA4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F454F57-5766-9CFC-544E-EF5B2781EA4A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1CD76B78-4472-F3CD-0F2B-7A23B9A8B7D5} = {67A1D3E5-10C8-42FD-E326-59AE347F861F}
+		{E8AF5BCB-6607-D913-449F-7902CD2E54C3} = {1CD76B78-4472-F3CD-0F2B-7A23B9A8B7D5}
+		{7F454F57-5766-9CFC-544E-EF5B2781EA4A} = {E8AF5BCB-6607-D913-449F-7902CD2E54C3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F3AD1DB1-9F58-4037-B0D8-27A92E71FD65}
+	EndGlobalSection
+EndGlobal
