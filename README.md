@@ -1,4 +1,4 @@
-## How to compile code
+## How to compile code in Linux:
 
 > gcc -o \<name of the output file> \<name of the source file> -lm
 
@@ -10,3 +10,8 @@
 *execute already compiled file:*
 
     ./executable_file
+
+## How to compile code in Windows:
+*execute already compiled file:*
+
+    Press "Terminal">>"Run Build Task" 
