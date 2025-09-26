@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "zPsEfMfSOVj7Wvh3qJUiKp8mK8GStkK2EThnucMe+/FICc7QqCoXJhaGE2WCzdaY86gjbx4J+Kq+vomaPT6Aug==",
+  "dgSpecHash": "wt1AZcKzn2A=",
   "success": true,
-  "projectFilePath": "/home/dobroslav/git/kursovi/semester-I/space_calculations/MyAspNetApp/MyAspNetApp/MyAspNetApp.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\slavi\\Documents\\git\\kursovi\\semester-I\\space_calculations\\MyAspNetApp\\MyAspNetApp\\MyAspNetApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\slavi\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.36\\microsoft.netcore.app.ref.6.0.36.nupkg.sha512",
+    "C:\\Users\\slavi\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.36\\microsoft.windowsdesktop.app.ref.6.0.36.nupkg.sha512",
+    "C:\\Users\\slavi\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.36\\microsoft.aspnetcore.app.ref.6.0.36.nupkg.sha512",
+    "C:\\Users\\slavi\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.36\\microsoft.netcore.app.host.win-x64.6.0.36.nupkg.sha512"
+  ],
   "logs": []
 }

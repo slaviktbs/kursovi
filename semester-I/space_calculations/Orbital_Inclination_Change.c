@@ -8,6 +8,7 @@ double m_func_par (double a)
     return a*1000;
 }
 
+
 double deg_to_rad (double alpha)
 {
     return alpha*(3.14/180);
